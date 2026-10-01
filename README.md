@@ -1,5 +1,7 @@
 # Análisis MBC · sitio estático
 
+La revisión de fuentes y decisiones editoriales está en [CONTENT-AUDIT.md](CONTENT-AUDIT.md). Los detalles ampliados de módulos y sectores están en `app.js`; las condiciones de compra, la historia y el contacto, en `index.html`. `theme.css` define una escala compartida de radios para marcas, controles, tarjetas, paneles y diálogos.
+
 La versión de GitHub Pages usa los archivos de la raíz. La publicación de Sites usa `dist/`. Mantenga ambas copias sincronizadas después de editar y ejecute `node scripts/version-assets.cjs` antes de publicar para actualizar los enlaces de estilos y scripts según su contenido.
 
 ## Herramientas de elección

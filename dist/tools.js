@@ -7,7 +7,7 @@
   const names={finanzas:'Finanzas',inventarios:'Inventarios',personas:'Recursos humanos',activos:'Activos fijos'};
   const catalog=new Map();
   function record(item){catalog.set(item.id,item);return item;}
-  Object.entries(modules).forEach(([key,m])=>record({id:`module-${key}`,label:names[key],type:'Módulo',desc:m.text,features:m.items,href:`#catalogo/soluciones/${key}`,keywords:m.items.join(' ')+' '+({finanzas:'financiero contable cuentas cobros pagos ERP',inventarios:'facturas facturar stock bodega compras ventas',personas:'planilla salarios nomina vacaciones empleados personal',activos:'equipo patrimonio depreciacion'}[key])}));
+  Object.entries(modules).forEach(([key,m])=>record({id:`module-${key}`,label:names[key],type:'Módulo',desc:m.text,features:m.items,href:`#catalogo/soluciones/${key}`,keywords:[...m.items,...m.details.flat(),...moduleCommon.flat()].join(' ')+' '+({finanzas:'financiero contable cuentas cobros pagos ERP',inventarios:'facturas facturar stock bodega compras ventas',personas:'planilla salarios nomina vacaciones empleados personal',activos:'equipo patrimonio depreciacion'}[key])}));
   const versionFacts={
     'version-estandar':['Administración integral','Los cuatro módulos principales','Gestión administrativa general'],
     'version-proyectos':['Gestión por proyectos','Presupuesto y estados financieros por proyecto','Seguimiento de proyectos'],
@@ -15,11 +15,11 @@
     'version-corporativa':['Multicompañía','Estados financieros consolidados','Gestión de un grupo de empresas'],
     'version-pos':['Gestión de cajas','Apertura, movimientos y cierre de cajas','Operaciones de punto de venta'],
     'version-produccion':['Gestión productiva','Formulación, órdenes y control de calidad','Seguimiento de la producción'],
-    'version-credito':['Gestión de préstamos','Planes de pago, abonos y reportes de saldos','Seguimiento de operaciones de crédito']
+    'version-credito':['Módulo adicional de crédito','Planes de pago, cargos, tasas y abonos','Seguimiento de operaciones de crédito']
   };
   $$('.version-card').forEach(el=>record({id:el.id,label:el.querySelector('h2,h3').textContent,type:'Versión',desc:el.querySelector('p').textContent,features:versionFacts[el.id],href:`#catalogo/versiones/${el.id}`,keywords:el.id==='version-corporativa'?'varias empresas grupo consolidacion multicompañia':el.id==='version-unidades'?'centros de costo departamentos unidades':el.id==='version-pos'?'facturacion cajas ventas tienda':el.id==='version-credito'?'prestamos cuotas abonos':'',host:el}));
   const licenseFacts={
-    'license-cloud':['Mensual por usuario','Acceso por aplicación remota','Actualizaciones incluidas','Respaldo diario publicado','Ambiente en nube'],
+    'license-cloud':['Mensual por usuario','Acceso por aplicación remota','Actualizaciones incluidas','Respaldo diario','Ambiente en nube'],
     'license-perpetua':['Compra única de licencia','Instalación en servidor o PC','Actualizaciones posteriores opcionales','Respaldo e infraestructura a evaluar','Instalación local']
   };
   $$('.license-card').forEach(el=>record({id:el.id,label:el.querySelector('h2,h3').textContent,type:'Licenciamiento',desc:el.querySelector('p').textContent,features:licenseFacts[el.id],href:'#catalogo/licenciamiento',keywords:el.id==='license-cloud'?'nube remoto suscripcion mensual':'local servidor compra licencia perpetua',host:el}));
@@ -76,7 +76,7 @@
   }
   [...catalog.values()].filter(item=>item.host).forEach(item=>item.host.insertAdjacentHTML('beforeend',addButton(item)));
   attachModuleAction();document.addEventListener('modulechange',attachModuleAction);
-  const toolOptions=[['asesor','Asesor interactivo'],['comparar','Comparar'],['mi-solucion','Mi solución'],['buscar','Buscar por necesidad'],['recorrido','Recorrido visual'],['plan','Plan de implementación']].map(([value,label])=>({value,label}));
+  const toolOptions=[['asesor','Asesor interactivo'],['comparar','Comparar'],['mi-solucion','Mi solución'],['buscar','Buscar por necesidad'],['recorrido','Recorrido ilustrativo'],['plan','Plan de implementación']].map(([value,label])=>({value,label}));
   const toolPicker=createPicker($('#tools-picker'),{id:'tools-select',label:'¿Qué desea hacer?',options:toolOptions,onChange:key=>navigate(`#herramientas/${key}`)});
   $$('[data-tool]').forEach((button,index)=>{
     button.addEventListener('click',()=>navigate(`#herramientas/${button.dataset.tool}`));
