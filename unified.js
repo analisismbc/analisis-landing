@@ -62,13 +62,20 @@ function showRoute(hash,focus=false){
 function navigate(hash,focus=false){if(location.hash!==hash)history.pushState({},'',hash);showRoute(hash,focus);}
 categoryButtons.forEach((button,index)=>{button.addEventListener('click',()=>navigate(`#catalogo/${button.dataset.categoryButton}`));button.addEventListener('keydown',e=>{let next;if(['ArrowRight','ArrowDown'].includes(e.key))next=(index+1)%categoryButtons.length;if(['ArrowLeft','ArrowUp'].includes(e.key))next=(index+categoryButtons.length-1)%categoryButtons.length;if(e.key==='Home')next=0;if(e.key==='End')next=categoryButtons.length-1;if(next!==undefined){e.preventDefault();categoryButtons[next].click();categoryButtons[next].focus({preventScroll:true})}})});
 
-document.addEventListener('click',e=>{
-  const link=e.target.closest('a');if(!link||!link.getAttribute('href')?.startsWith('#')||e.ctrlKey||e.metaKey||e.shiftKey||e.altKey||e.button!==0)return;
+function followInternalLink(e){
+  if(e.defaultPrevented)return;
+  const target=e.target instanceof Element?e.target:e.target.parentElement;
+  const link=target?.closest('a');const href=link?.getAttribute('href');
+  if(!href?.startsWith('#')||e.ctrlKey||e.metaKey||e.shiftKey||e.altKey||(typeof e.button==='number'&&e.button!==0))return;
   e.preventDefault();
   if(link.dataset.consult){const message=document.querySelector('textarea[name="mensaje"]');if(!message.value.trim()||message.dataset.suggested==='true'){message.value=`Me interesa recibir información sobre ${link.dataset.consult}.`;message.dataset.suggested='true'}}
-  const hash=link.dataset.heroModule?`#catalogo/soluciones/${link.dataset.heroModule}`:link.hash;
+  const hash=link.dataset.heroModule?`#catalogo/soluciones/${link.dataset.heroModule}`:href;
   navigate(hash,true);
-});
+}
+// Handle the menu at its own container, including nested translated labels.
+// The document handler covers the other internal links without processing twice.
+primaryNav.addEventListener('click',followInternalLink);
+document.addEventListener('click',followInternalLink);
 document.querySelector('textarea[name="mensaje"]').addEventListener('input',e=>{e.target.dataset.suggested='false'});
 document.querySelectorAll('[data-sector]').forEach((button,i)=>button.addEventListener('click',()=>{document.querySelector('.sector-number').textContent=String(i+1).padStart(2,'0')}));
 window.addEventListener('popstate',()=>showRoute(location.hash,true));window.addEventListener('hashchange',()=>showRoute(location.hash,true));
