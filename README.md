@@ -19,3 +19,5 @@ El recorrido visual muestra capacidades en una interfaz ilustrativa, claramente 
 El catálogo agrupa las aplicaciones móviles dentro de Servicios. Los enlaces anteriores `#catalogo/apps`, `#apps` y `#apps-moviles` siguen abriendo ese servicio. Cada categoría y herramienta tiene un título principal y una introducción breve; sus textos están en `catalogHeadings` (`unified.js`) y `toolHeadings` (`tools.js`). `editorial.css` define la jerarquía visual y la presentación compacta. El pie de página despliega sus enlaces secundarios a petición en móvil.
 
 Los complementos de archivos bancarios para proveedores y colaboradores tienen identificadores distintos. Las selecciones y los enlaces compartidos anteriores conservan compatibilidad.
+
+`navigation.js` y `navigation.css` definen el header, los breadcrumbs y los accesos flotantes al asesor, la selección y WhatsApp. La ruta de navegación refleja la categoría y la opción activas; en móvil omite el nivel genérico «Catálogo». El contador usa la misma selección del catálogo. Los accesos flotantes se ocultan al editar campos, abrir un selector o desplegar el menú, y respetan el espacio seguro inferior del dispositivo.

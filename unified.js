@@ -37,7 +37,7 @@ function resolveRoute(hash){
   const parts=hash.replace(/^#/,'').split('/');const key=parts[0];
   if(key==='herramientas')return{view:'herramientas',tool:parts[1]?.split('?')[0]||'asesor'};
   if(['inicio','nosotros','contacto'].includes(key))return{view:key};
-  if(key==='contenido')return{view:currentView||'inicio',category:remembered.category};
+  if(key==='contenido')return{view:currentView||'inicio',category:remembered.category,choice:remembered.choices[remembered.category],tool:document.querySelector('[data-tool][aria-selected=true]')?.dataset.tool||'asesor'};
   if((key==='catalogo'&&parts[1]==='apps')||key==='apps'||key==='apps-moviles')return{view:'catalogo',category:'servicios',choice:'servicio-apps'};
   if(key==='catalogo')return{view:'catalogo',category:panels.some(p=>p.dataset.category===parts[1])?parts[1]:remembered.category,choice:parts[2]};
   if(panels.some(p=>p.dataset.category===key))return{view:'catalogo',category:key};
@@ -65,6 +65,7 @@ function showRoute(hash,focus=false){
   // Changing a category replaces its content in place. Only changing the screen resets reading position, without animation.
   if(changedView||focus)window.scrollTo({top:0,left:0,behavior:'instant'});
   if(focus)document.getElementById('contenido').focus({preventScroll:true});
+  document.dispatchEvent(new CustomEvent('routechange',{detail:route}));
 }
 function navigate(hash,focus=false){if(location.hash!==hash)history.pushState({},'',hash);showRoute(hash,focus);}
 categoryButtons.forEach((button,index)=>{button.addEventListener('click',()=>navigate(`#catalogo/${button.dataset.categoryButton}`));button.addEventListener('keydown',e=>{let next;if(['ArrowRight','ArrowDown'].includes(e.key))next=(index+1)%categoryButtons.length;if(['ArrowLeft','ArrowUp'].includes(e.key))next=(index+categoryButtons.length-1)%categoryButtons.length;if(e.key==='Home')next=0;if(e.key==='End')next=categoryButtons.length-1;if(next!==undefined){e.preventDefault();categoryButtons[next].click();categoryButtons[next].focus({preventScroll:true})}})});
@@ -77,7 +78,8 @@ function followInternalLink(e){
   e.preventDefault();
   if(link.dataset.consult){const message=document.querySelector('textarea[name="mensaje"]');if(!message.value.trim()||message.dataset.suggested==='true'){message.value=`Me interesa recibir información sobre ${link.dataset.consult}.`;message.dataset.suggested='true'}}
   const hash=link.dataset.heroModule?`#catalogo/soluciones/${link.dataset.heroModule}`:href;
-  navigate(hash,resolveRoute(hash).view!==currentView);
+  const primaryAction=link.closest('#navigation,.brand,.footer-top,.floating-actions');
+  navigate(hash,resolveRoute(hash).view!==currentView||Boolean(primaryAction));
 }
 // Handle the menu at its own container, including nested translated labels.
 // The document handler covers the other internal links without processing twice.
