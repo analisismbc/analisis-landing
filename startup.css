@@ -1,0 +1,12 @@
+.app-startup{display:none}
+html[data-app-starting=true] .app-startup{position:fixed;inset:0;z-index:1000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:27px;background:#f7f9fd;color:#486480;padding:24px}
+html[data-app-starting=true] body{overflow:hidden}
+.app-startup img{display:block;width:104px;height:104px;object-fit:contain}
+.startup-progress{position:relative;display:block;width:90px;height:3px;overflow:hidden;border-radius:4px;background:#dce6f4}
+.startup-progress:after{content:'';position:absolute;inset:0 auto 0 0;width:35px;border-radius:4px;background:#2464eb;animation:startup-progress 1s ease-in-out infinite alternate}
+.app-startup p{margin:0;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;letter-spacing:.3px;color:inherit}
+html[data-theme=dark] .app-startup{background:#0b1422;color:#bac8dc}
+html[data-theme=dark] .startup-progress{background:#2c3d54}
+html[data-theme=dark] .startup-progress:after{background:#8bb8ff}
+@keyframes startup-progress{from{transform:translateX(-5px)}to{transform:translateX(60px)}}
+@media(prefers-reduced-motion:reduce){.startup-progress:after{animation:none;left:27px}}
