@@ -149,6 +149,37 @@ html[data-theme=dark] .popular-needs [data-need-tone="3"] .need-symbol{color:#e4
 .needs-input>button:disabled{opacity:.45;cursor:default}
 .tools-view #search-more{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:48px;margin-top:18px;border-color:var(--accent-border);background:var(--accent-soft);color:var(--accent-text)}
 .tools-view :is(#search-more,#search-filters)[hidden]{display:none!important}
+/* All six tools share one navigation surface, with a clear current tab. */
+.tools-view .tools-tabs{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:0;border:1px solid var(--line);border-radius:var(--radius-card);overflow:hidden;background:var(--surface)}
+.tools-view .tools-tabs>button{position:relative;display:flex;align-items:center;gap:10px;min-width:0;width:100%;min-height:78px;margin:0;padding:13px 12px;border:0;border-radius:0;background:transparent;color:var(--ink);text-align:left;line-height:1.5;transition:background-color 140ms ease,color 140ms ease}
+.tools-view .tools-tabs>button+button{border-left:1px solid var(--line)}
+.tool-nav-icon{display:grid;place-items:center;flex-shrink:0;width:32px;height:32px;border:1px solid var(--line);border-radius:var(--radius-control);background:var(--surface-subtle);color:var(--text-secondary)}
+.tool-nav-icon svg{display:block;width:19px;height:19px}
+.tool-nav-copy{display:flex;flex-direction:column;gap:4px;min-width:0}
+.tool-nav-copy strong{font-size:12px;line-height:1.5;font-weight:650;overflow-wrap:normal}
+.tool-nav-copy small{font-size:9px;line-height:1.6;font-weight:450;color:var(--muted)}
+.tools-view .tools-tabs>button:hover{background:var(--surface-hover)}
+.tools-view .tools-tabs>button[aria-selected=true]{background:var(--accent-soft);color:var(--accent-text);box-shadow:inset 0 -3px var(--accent-text)}
+.tools-tabs>button[aria-selected=true] .tool-nav-icon{background:var(--accent-text);color:var(--surface);border-color:var(--accent-text)}
+html[data-theme=dark] .tools-tabs>button[aria-selected=true] .tool-nav-icon{color:#0b1422}
+.tools-view .tools-tabs .tool-nav-count{position:absolute;left:34px;top:6px;display:grid;place-items:center;min-width:18px;min-height:18px;margin:0;padding:0 4px;border:2px solid var(--surface);border-radius:var(--radius-sm);background:var(--accent-text);color:var(--surface);font-size:9px;line-height:1.4;font-weight:700}
+html[data-theme=dark] .tools-view .tools-tabs .tool-nav-count{color:#0b1422}
+.tools-view .tools-tabs>button:focus-visible{outline:2px solid var(--accent-text);outline-offset:-4px;z-index:1}
+@media(max-width:1100px) and (min-width:721px){
+ .tools-view .tools-tabs{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .tools-view .tools-tabs>button:nth-child(3n+1){border-left:0}
+ .tools-view .tools-tabs>button:nth-child(n+4){border-top:1px solid var(--line)}
+ .tool-nav-copy strong{font-size:13px}.tool-nav-copy small{font-size:10px}
+}
+@media(max-width:720px){
+ .tools-view .tools-tabs{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .tools-view .tools-tabs>button{min-height:60px;padding:11px 10px;gap:9px}
+ .tools-view .tools-tabs>button:nth-child(odd){border-left:0}
+ .tools-view .tools-tabs>button:nth-child(n+3){border-top:1px solid var(--line)}
+ .tool-nav-copy small{display:none}
+ .tools-view .tools-tabs .tool-nav-count{left:32px;top:5px}
+}
+@media(max-width:380px){.tool-nav-copy strong{font-size:11px}.tool-nav-icon{width:28px;height:28px}.tools-view .tools-tabs .tool-nav-count{left:28px}}
 /* Official artwork stays proportional; use supplied white variants on dark surfaces. */
 .brand-on-dark{display:none!important}
 html[data-theme=dark] .brand-on-light{display:none!important}

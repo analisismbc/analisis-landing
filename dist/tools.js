@@ -77,17 +77,23 @@
   [...catalog.values()].filter(item=>item.host).forEach(item=>item.host.insertAdjacentHTML('beforeend',addButton(item)));
   attachModuleAction();document.addEventListener('modulechange',attachModuleAction);
   const toolOptions=[['asesor','Asesor interactivo'],['comparar','Comparar'],['mi-solucion','Mi solución'],['buscar','Buscar por necesidad'],['recorrido','Recorrido ilustrativo'],['plan','Plan de implementación']].map(([value,label])=>({value,label}));
-  const toolPicker=createPicker($('#tools-picker'),{id:'tools-select',label:'¿Qué desea hacer?',options:toolOptions,onChange:key=>navigate(`#herramientas/${key}`)});
+  const toolDescriptions={asesor:'Recomendación guiada',comparar:'Versiones y licencias','mi-solucion':'Sus opciones guardadas',buscar:'Encuentre por proceso',recorrido:'Explore los módulos',plan:'Prepare la puesta en marcha'};
   $$('[data-tool]').forEach((button,index)=>{
+    const key=button.dataset.tool;const label=button.firstChild.textContent.trim();const count=button.querySelector('[data-cart-count]');
+    const icon=document.createElement('span');icon.className='tool-nav-icon';icon.setAttribute('aria-hidden','true');icon.innerHTML=pickerIcon(key);
+    const copy=document.createElement('span');copy.className='tool-nav-copy';
+    const title=document.createElement('strong');title.textContent=label;
+    const description=document.createElement('small');description.textContent=toolDescriptions[key];description.setAttribute('aria-hidden','true');copy.append(title,description);
+    button.replaceChildren(icon,copy);if(count){count.classList.add('tool-nav-count');button.append(count);}
     button.addEventListener('click',()=>navigate(`#herramientas/${button.dataset.tool}`));
-    button.addEventListener('keydown',e=>{let next;if(e.key==='ArrowRight')next=(index+1)%toolOptions.length;if(e.key==='ArrowLeft')next=(index+toolOptions.length-1)%toolOptions.length;if(e.key==='Home')next=0;if(e.key==='End')next=toolOptions.length-1;if(next!==undefined){e.preventDefault();const target=$$('[data-tool]')[next];target.click();target.focus({preventScroll:true});}});
+    button.addEventListener('keydown',e=>{let next;const columns=getComputedStyle(button.parentElement).gridTemplateColumns.split(' ').length;if(e.key==='ArrowRight')next=(index+1)%toolOptions.length;if(e.key==='ArrowLeft')next=(index+toolOptions.length-1)%toolOptions.length;if(e.key==='ArrowDown')next=(index+columns)%toolOptions.length;if(e.key==='ArrowUp')next=(index+toolOptions.length-columns)%toolOptions.length;if(e.key==='Home')next=0;if(e.key==='End')next=toolOptions.length-1;if(next!==undefined){e.preventDefault();const target=$$('[data-tool]')[next];target.click();target.focus({preventScroll:true});}});
   });
   const toolHeadings={"asesor":["Asesor interactivo","Tres pasos para recibir una recomendación."],"comparar":["Comparar opciones","Revise las diferencias entre versiones y modalidades de licencia."],"mi-solucion":["Mi solución","Revise, comparta o descargue las opciones elegidas."],"buscar":["Buscar por necesidad","Encuentre opciones para los procesos que quiere mejorar."],"recorrido":["Recorrido de enlace soft®","Vista ilustrativa de sus capacidades. Solicite una demostración del software real."],"plan":["Prepare la implementación","Organice sus preparativos; el alcance y los tiempos se acuerdan con el equipo."]};
   function show(key){
     const selected=toolOptions.some(option=>option.value===key)?key:'asesor';
     $$('[data-tool-panel]').forEach(panel=>{panel.hidden=panel.dataset.toolPanel!==selected;});
     $$('[data-tool]').forEach(button=>{const active=button.dataset.tool===selected;button.setAttribute('aria-selected',String(active));button.tabIndex=active?0:-1;});
-    toolPicker.setValue(selected);$('#tools-title').textContent=toolHeadings[selected][0];$('#tools-intro').textContent=toolHeadings[selected][1];status.textContent='';
+    $('#tools-title').textContent=toolHeadings[selected][0];$('#tools-intro').textContent=toolHeadings[selected][1];status.textContent='';
     const query=location.hash.split('?')[1]||'';const shared=new URLSearchParams(query).get('sel');
     preview=selected==='mi-solucion'&&shared!==null?allowedIDs(shared.slice(0,5000).split(',')):null;
     if(selected==='mi-solucion')renderSolution();if(selected==='plan')renderPlan();
