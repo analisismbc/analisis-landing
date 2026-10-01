@@ -13,3 +13,9 @@ La selección, las respuestas del asesor y los preparativos se guardan bajo `ana
 El resumen PDF se genera en el navegador e incluye la selección y la lista de preparación. WhatsApp y correo abren las aplicaciones con un mensaje preparado y requieren que la persona confirme el envío. Ninguna de estas funciones requiere un servidor.
 
 El recorrido visual muestra capacidades en una interfaz ilustrativa, claramente identificada; no utiliza capturas del software real. El desarrollo de aplicaciones móviles con React Native es un servicio de Análisis MBC y está disponible en la búsqueda, la selección comercial y las consultas de contacto.
+
+## Organización del contenido
+
+El catálogo agrupa las aplicaciones móviles dentro de Servicios. Los enlaces anteriores `#catalogo/apps`, `#apps` y `#apps-moviles` siguen abriendo ese servicio. Cada categoría y herramienta tiene un título principal y una introducción breve; sus textos están en `catalogHeadings` (`unified.js`) y `toolHeadings` (`tools.js`). `editorial.css` define la jerarquía visual y la presentación compacta. El pie de página despliega sus enlaces secundarios a petición en móvil.
+
+Los complementos de archivos bancarios para proveedores y colaboradores tienen identificadores distintos. Las selecciones y los enlaces compartidos anteriores conservan compatibilidad.

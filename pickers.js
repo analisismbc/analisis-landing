@@ -22,7 +22,7 @@ function pickerIcon(key){
     recorrido:'<rect x="3" y="4" width="18" height="16" rx="3"/><path d="m10 8 6 4-6 4V8Z"/>',
     plan:'<path d="M8 6h13M8 12h13M8 18h13M3 6h1m-1 6h1m-1 6h1"/>'
   };
-  const group=key.startsWith('version-')?'versiones':key.startsWith('servicio-')?'servicios':key.startsWith('cliente-')?'clientes':key.startsWith('complemento-')?'complementos':key;
+  const group=key==='servicio-apps'?'apps':key.startsWith('version-')?'versiones':key.startsWith('servicio-')?'servicios':key.startsWith('cliente-')?'clientes':key.startsWith('complemento-')?'complementos':key;
   const path=paths[group]||'<rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/>';
   return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false">${path}</svg>`;
 }
