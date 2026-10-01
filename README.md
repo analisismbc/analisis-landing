@@ -21,3 +21,11 @@ El catálogo agrupa las aplicaciones móviles dentro de Servicios. Los enlaces a
 Los complementos de archivos bancarios para proveedores y colaboradores tienen identificadores distintos. Las selecciones y los enlaces compartidos anteriores conservan compatibilidad.
 
 `navigation.js` y `navigation.css` definen el header, los breadcrumbs y los accesos flotantes al asesor, la selección y WhatsApp. La ruta de navegación refleja la categoría y la opción activas; en móvil omite el nivel genérico «Catálogo». El contador usa la misma selección del catálogo. Los accesos flotantes se ocultan al editar campos, abrir un selector o desplegar el menú, y respetan el espacio seguro inferior del dispositivo.
+
+## App web instalable
+
+`manifest.webmanifest`, los iconos de `assets/` y `pwa.js` permiten instalar el sitio en un navegador compatible desde «Instalar app» en el menú o el pie. Android utiliza el diálogo del navegador cuando está disponible; iPhone muestra los pasos de Safari. En modo independiente se ocultan los accesos de instalación. La instalación real se confirma en el dispositivo; no necesita backend.
+
+`node scripts/version-assets.cjs` genera también `sw.js` en raíz y `dist/` desde `scripts/sw-template.js`. El contenido de cada recurso determina la versión de caché. El worker guarda únicamente el shell y los recursos estáticos locales; conserva el catálogo y las herramientas sin conexión después de la primera carga completada. No guarda datos del formulario, peticiones externas ni respuestas de autenticación. WhatsApp y correo requieren conectividad para enviar mensajes. Una versión nueva muestra «Actualizar app», para que la persona decida cuándo recargar.
+
+Las rutas del manifiesto, el registro y la caché son relativas y funcionan tanto en `/analisis-landing/` de GitHub Pages como en la raíz de Sites. El service worker requiere HTTPS o localhost. Al cambiar recursos, mantenga las dos copias sincronizadas y regenere `sw.js` antes de publicar.

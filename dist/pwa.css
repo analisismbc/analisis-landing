@@ -1,0 +1,33 @@
+[data-install-app][hidden],.pwa-status[hidden],.pwa-install-now[hidden],.pwa-platform-panel[hidden]{display:none!important}
+.site-header #navigation>.pwa-menu{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-width:44px;min-height:44px;padding:10px;border:1px solid #dce7f4;border-radius:12px;background:#f6f9fe;color:#34659c;cursor:pointer;flex-shrink:0;box-shadow:none}
+.pwa-menu svg{width:21px;height:21px}.pwa-menu span{display:none}
+.pwa-menu:hover{background:#eaf2ff!important;border-color:#99b9e8!important}
+.pwa-footer{display:inline-flex;align-items:center;gap:9px;border:1px solid #48617b;background:#ffffff08;color:#d8e7ff;border-radius:10px;padding:10px 14px;min-height:44px;cursor:pointer;font:inherit;font-size:12px;margin-top:16px}
+.pwa-footer svg{width:18px;height:18px}.pwa-footer:hover{background:#ffffff12;color:#fff}
+.pwa-dialog{width:min(460px,calc(100% - 28px));max-width:none;max-height:calc(100dvh - 32px);overflow:auto;overscroll-behavior:contain;box-sizing:border-box;padding:28px;border:1px solid #dce6f2;border-radius:24px;background:#fff;color:#17334e;box-shadow:0 24px 90px #07172b40;font-family:inherit}
+.pwa-dialog::backdrop{background:#07172bb3;backdrop-filter:blur(4px)}
+.pwa-dialog:not([open]){display:none}.pwa-dialog[open]{display:block}
+.pwa-dialog-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:22px;gap:16px}
+.pwa-dialog-icon{display:block;width:62px;height:62px;border-radius:17px}
+.pwa-close{display:grid;place-items:center;width:44px;height:44px;border:1px solid #dde6f2;border-radius:13px;background:#f7f9fd;color:#526984;cursor:pointer;flex-shrink:0}
+.pwa-close svg{width:20px;height:20px}
+.pwa-dialog h2{font-size:26px;line-height:1.2;letter-spacing:-.7px;font-weight:700;margin:0 0 12px;color:#17334e}
+.pwa-dialog p{font-size:14px;line-height:1.65;color:#59708b;margin:0 0 20px}
+.pwa-install-now{display:flex;width:100%;justify-content:center;align-items:center;gap:10px;min-height:49px;padding:13px 20px;background:linear-gradient(110deg,#246bfd,#1c5de6);color:white;border:1px solid #347cff;border-radius:13px;font-size:14px;font-weight:650;cursor:pointer;margin-bottom:20px;box-shadow:0 6px 16px #246bfd20}
+.pwa-install-now svg{width:20px;height:20px}.pwa-install-now:disabled{opacity:.6;cursor:wait}
+.pwa-platforms{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:5px;margin-bottom:21px;background:#f3f6fc;border:1px solid #e0e8f3;border-radius:14px}
+.pwa-platforms button{border:1px solid transparent;border-radius:10px;background:transparent;color:#59708b;font-size:13px;font-weight:600;min-height:44px;padding:10px;cursor:pointer}
+.pwa-platforms button[aria-selected=true]{background:#fff;border-color:#d7e4f5;color:#245fb1;box-shadow:0 3px 9px #18344b08}
+.pwa-platform-panel ol{list-style:none;counter-reset:install;margin:0;padding:0;display:grid;gap:17px}
+.pwa-platform-panel li{counter-increment:install;display:flex;gap:12px;font-size:13px;line-height:1.65;color:#42617f}
+.pwa-platform-panel li:before{content:counter(install);display:grid;place-items:center;width:26px;height:26px;flex-shrink:0;border-radius:9px;background:#edf4ff;color:#2364bd;font-size:11px;font-weight:700}
+.pwa-platform-panel strong{font-weight:650;color:#24466c}
+.pwa-dialog .pwa-offline-note{padding-top:19px;margin:23px 0 0;border-top:1px solid #e4ebf4;font-size:12px;line-height:1.7}
+.pwa-dialog .pwa-install-feedback{margin-top:15px;font-size:12px}.pwa-install-feedback:empty{display:none}
+.pwa-status{position:static;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:6px 14px;padding:10px 24px;background:#edf4ff;border-bottom:1px solid #d9e7fb;font-size:12px;line-height:1.6;color:#345d86;text-align:center}
+.pwa-status button{border:1px solid #acc6ea;border-radius:9px;background:#fff;color:#215eac;font:inherit;font-weight:650;cursor:pointer;min-height:36px;padding:6px 12px}
+.pwa-close:focus-visible,.pwa-platforms button:focus-visible,.pwa-install-now:focus-visible,[data-install-app]:focus-visible,.pwa-status button:focus-visible{outline:2px solid #246bfd;outline-offset:3px}
+body:has(.pwa-dialog[open]){overflow:hidden}body:has(.pwa-dialog[open]) .floating-actions{visibility:hidden;pointer-events:none}
+@media(max-width:1100px){.site-header #navigation>.pwa-menu{justify-content:flex-start;min-height:49px;padding:12px 16px;font-size:13px;font-weight:550;border:0;background:#f5f8fd;border-radius:10px}.pwa-menu span{display:block}}
+@media(max-width:360px){.pwa-dialog{padding:22px;border-radius:20px}.pwa-dialog h2{font-size:24px}}
+@media(display-mode:standalone){[data-install-app]{display:none!important}}
