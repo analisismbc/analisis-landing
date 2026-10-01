@@ -1,0 +1,32 @@
+/* Rich mobile navigation; desktop retains its compact labels. */
+.menu-panel-heading,.nav-icon,.nav-description,.nav-chevron{display:none}
+.nav-copy,.nav-title{display:inline}
+@media(max-width:1100px){
+ .site-header #navigation{padding:14px;gap:4px;left:12px;width:calc(100% - 24px);max-width:440px;right:12px;margin-left:auto;background:var(--surface,#fff);border-color:var(--line,#dce5f2);border-radius:var(--radius-panel);box-shadow:0 20px 60px #03162b40,0 3px 10px #03162b14}
+ .menu-panel-heading{position:relative;display:flex;flex-direction:column;gap:3px;padding:8px 10px 17px;margin-bottom:6px;border-bottom:1px solid var(--line,#e3e8f0);overflow:hidden}
+ .menu-panel-heading>span{font-size:9px;font-weight:650;letter-spacing:1.4px;color:var(--muted)}
+ .menu-panel-heading>strong{font-size:21px;font-weight:650;line-height:1.4;letter-spacing:-.5px;color:var(--ink)}
+ .menu-panel-heading>.menu-panel-mark{position:absolute;right:8px;top:8px;width:40px;height:40px;object-fit:contain}
+ .site-header #navigation>a{display:grid;grid-template-columns:38px minmax(0,1fr) 16px;gap:12px;align-items:center;justify-content:start;min-height:64px;padding:10px;border:1px solid transparent;border-radius:var(--radius-control);font-size:14px;line-height:1.4;flex-shrink:0}
+ .nav-copy{display:flex;flex-direction:column;gap:4px;min-width:0}
+ .nav-title{display:block;font-size:13px;font-weight:650;line-height:1.45;letter-spacing:0}
+ .nav-description{display:block;font-size:10px;font-weight:450;line-height:1.6;color:var(--muted)}
+ .nav-icon{display:grid;place-items:center;width:38px;height:38px;flex-shrink:0;border-radius:var(--radius-sm);background:var(--accent-soft,#edf4ff);color:var(--accent-text,#3169ad);border:1px solid var(--accent-border,#dce9fb)}
+ .nav-icon svg{width:20px;height:20px;display:block}
+ .nav-chevron{display:block;color:var(--muted);opacity:.7}
+ .nav-chevron svg{display:block;width:14px;height:14px}
+ .site-header #navigation>a.current:not(.button){background:var(--accent-soft,#edf4ff);border-color:var(--accent-border,#dce9fb);box-shadow:inset 3px 0 0 var(--accent-text,#246bfd)}
+ .site-header #navigation>a.current:not(.button) .nav-icon{color:var(--accent-text,#246bfd);background:var(--surface,#fff)}
+ .site-header #navigation>a:hover:not(.button){background:var(--surface-subtle,#f5f8fd);border-color:var(--line,#dce5f2)}
+ .site-header #navigation>a.current:not(.button):hover{background:var(--accent-soft,#edf4ff);border-color:var(--accent-border,#dce9fb)}
+ .site-header #navigation>.button{margin:10px 0 0;min-height:66px;padding:12px;grid-template-columns:38px minmax(0,1fr) 16px;gap:12px;justify-content:start;background:linear-gradient(115deg,#226af2,#1958d4);border-color:#4384ee;box-shadow:0 6px 16px #1958d41a;text-align:left}
+ .site-header #navigation>.button .nav-icon{background:#ffffff14;border-color:#ffffff26;color:#fff}
+ .site-header #navigation>.button .nav-title{color:#fff}
+ .site-header #navigation>.button .nav-description{color:#e0ebff}
+ .site-header #navigation>.button .nav-chevron{color:#fff;opacity:1}
+ .site-header #navigation>.pwa-menu{min-height:46px;justify-content:center;gap:10px;padding:10px;margin:8px 0 0;background:var(--surface-subtle,#f5f8fd);border-color:var(--line,#dce5f2);font-size:11px;box-shadow:none}
+ .site-header #navigation>.pwa-menu svg{width:17px;height:17px}
+ .site-header #navigation>.pwa-menu[hidden]{display:none!important}
+}
+@media(max-width:360px){.site-header #navigation{padding:11px}.site-header #navigation>a{grid-template-columns:34px minmax(0,1fr) 12px;gap:10px;padding:9px}.nav-icon{width:34px;height:36px}.nav-title{font-size:12px}.nav-description{font-size:10px}.site-header #navigation>.button{grid-template-columns:34px minmax(0,1fr) 12px;gap:10px;padding:10px}.menu-panel-heading>strong{font-size:20px}}
+@media(max-height:650px) and (max-width:1100px){.site-header #navigation>a{min-height:58px;padding-block:8px}.menu-panel-heading{padding-block:4px 10px;margin-bottom:3px}.menu-panel-heading>strong{font-size:19px}.site-header #navigation>.button{min-height:60px;margin-top:5px}}
