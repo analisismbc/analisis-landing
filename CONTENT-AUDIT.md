@@ -36,3 +36,16 @@ El apartado de aplicaciones móviles con React Native y sus ejemplos de uso proc
 La escala compartida se define en `theme.css`: marcas de 6 px, iconos de 8 px, controles de 10 px, tarjetas de 14 px, paneles de 18 px y diálogo de 22 px. Los indicadores circulares conservan su forma.
 
 Cada pantalla tiene un h1. Los contenidos principales son h2; las funciones dentro de un módulo son h3. Los resúmenes desplegables funcionan con teclado, exponen su estado nativo y no desplazan la página automáticamente.
+
+## Actualización con Facebook oficial
+
+Integración realizada el 1 de octubre de 2026 con las publicaciones públicas de Análisis MBC S.A. revisadas en esta conversación.
+
+| Dato | Fuente | Integración |
+| --- | --- | --- |
+| Más de 38 años, 300 clientes activos y 2.500 implementaciones; Costa Rica, Nicaragua, Panamá, El Salvador y Perú | https://www.facebook.com/analisismbc/posts/pfbid0RrDcKKQ5sKEinpbpYFVZjpbWGhZCwf5jvSm9xk5nWxuU8ZEP5Rz9439DWZDEoGWsl | Cifras compactas en Inicio; países y fuente en el desplegable de Nosotros |
+| Capacitación periódica para nuevos colaboradores y funciones avanzadas | https://www.facebook.com/analisismbc/posts/pfbid0VDvUJVtDWLmmqf8mNwvsDRgG8nYMZ9Exs9jLHQ1JRX99XTnGYzF3Sp1CLvNTPw7Rl | Servicio de Capacitación, también indexado por las herramientas |
+| Crecimiento sin migrar a otro sistema | https://www.facebook.com/analisismbc/posts/pfbid0LBVge41MduPsiX6un5zD6qJvPNtBS9oo7S9LYUx4JzYZBGxkbuRiyJfw6JfLVSuMl | Funciones compartidas de enlace soft®, consultables dentro de los módulos |
+| ventas@analisis.cr y asesor 8695-0367 | https://www.facebook.com/analisismbc/posts/pfbid0RrDcKKQ5sKEinpbpYFVZjpbWGhZCwf5jvSm9xk5nWxuU8ZEP5Rz9439DWZDEoGWsl | Correo comercial en Contacto, pie, formulario y PDF; WhatsApp existente conservado |
+
+Los clientes activos y los clientes acumulados son métricas distintas. Las implementaciones y los programas instalados conservan sus denominaciones originales. Se mantienen las cifras y países históricos de analisis.cr bajo su atribución, sin sumarlos ni tratarlos como cifras actuales. No se altera la dirección: Facebook y la web institucional difieren en la distancia de referencia. Las cifras son publicadas por la empresa; no son contadores en tiempo real. No se añaden reseñas, nombres de clientes ni promesas nuevas.

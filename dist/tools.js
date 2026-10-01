@@ -196,7 +196,7 @@
     ['Selección para evaluar',true],['Opciones orientativas; alcance y condiciones sujetos a confirmación.',false],['',false],
     ...chosen().flatMap(item=>[[`${item.type} / ${item.label}`,true],[item.desc,false],['',false]]),
     ['Preparación de la implementación',true],...stages.flatMap((stage,i)=>[[`${i+1}. ${stage.label}`,true],...stage.checks.map((text,j)=>[`${state.checklist.includes(`stage-${i}-${j}`)?'[x]':'[ ]'} ${text}`,false])]),
-    ['',false],['Contacto / Análisis MBC',true],['contacto@analisis.cr / (+506) 2439-4545 / WhatsApp 8695-0367',false],['Este resumen no es una cotización ni un contrato.',false]
+    ['',false],['Contacto comercial / Análisis MBC',true],['ventas@analisis.cr / (+506) 2439-4545 / WhatsApp 8695-0367',false],['Este resumen no es una cotización ni un contrato.',false]
   ];}
   // A self-contained PDF export with WinAnsi fonts; no external service or
   // dependency receives the visitor's selection.
