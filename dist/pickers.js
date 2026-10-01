@@ -3,6 +3,7 @@
 const customPickers = new Set();
 function closePickers(){customPickers.forEach(picker=>picker.close());}
 function pickerIcon(key){
+  if(['finanzas','inventarios','personas','activos'].includes(key))return `<img class="module-emblem" src="assets/module-${key}.svg" alt="" width="64" height="64">`;
   const paths={
     finanzas:'<path d="M4 20h16M6 20V9h12v11M4 9l8-5 8 5M9 12v5m6-5v5"/>',
     inventarios:'<path d="m3 7 9-4 9 4v10l-9 4-9-4V7Zm0 0 9 4 9-4M12 11v10"/>',

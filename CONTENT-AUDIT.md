@@ -37,6 +37,14 @@ La escala compartida se define en `theme.css`: marcas de 6 px, iconos de 8 px, c
 
 Cada pantalla tiene un h1. Los contenidos principales son h2; las funciones dentro de un módulo son h3. Los resúmenes desplegables funcionan con teclado, exponen su estado nativo y no desplazan la página automáticamente.
 
+## Clientes, comentarios y mapa
+
+Revisión de analisis.cr realizada el 1 de octubre de 2026. Inicio incorpora cinco experiencias distintas del widget original, resumidas y atribuidas a sus empresas; las entradas repetidas del carrusel se omiten. Los textos se identifican como resúmenes y enlazan a los comentarios originales, sin añadir puntuaciones ni convertir la duración histórica de un testimonio en un dato actual.
+
+El directorio reúne nombres legibles de la imagen «Clientes Actuales» en https://analisis.cr/quienes-somos/ y enlaza al listado institucional. La presentación identifica esa publicación como su fuente, sin certificar contratos vigentes en 2026. Los logotipos de los cinco testimonios conservan la identidad de sus empresas.
+
+Contacto utiliza el mapa embebido publicado en la misma página institucional, junto con la dirección existente. Los cuatro emblemas de módulos son dibujos SVG nuevos inspirados en una familia circular y colores por área; no sustituyen el logotipo oficial de Análisis MBC.
+
 ## Actualización con Facebook oficial
 
 Integración realizada el 1 de octubre de 2026 con las publicaciones públicas de Análisis MBC S.A. revisadas en esta conversación.
