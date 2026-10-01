@@ -11,7 +11,7 @@ manifest.icons.forEach(icon=>{
   icon.src=`${file}?v=${hash}`;
 });
 for(const dir of [root,path.join(root,'dist')])fs.writeFileSync(path.join(dir,'manifest.webmanifest'),JSON.stringify(manifest,null,2)+'\n');
-const versioned=original.replace(/((?:src|href)=")([^"?#]+\.(?:js|css|png|webmanifest))(?:\?[^"#]*)?(")/g,(match,prefix,file,suffix)=>{
+const versioned=original.replace(/((?:src|href)=")([^"?#]+\.(?:js|css|png|svg|webmanifest))(?:\?[^"#]*)?(")/g,(match,prefix,file,suffix)=>{
   if(/^(?:https?:)?\/\//.test(file))return match;
   const contents=fs.readFileSync(path.join(root,'dist',file));
   const version=createHash('sha256').update(contents).digest('hex').slice(0,12);

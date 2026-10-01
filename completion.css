@@ -149,4 +149,20 @@ html[data-theme=dark] .popular-needs [data-need-tone="3"] .need-symbol{color:#e4
 .needs-input>button:disabled{opacity:.45;cursor:default}
 .tools-view #search-more{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:48px;margin-top:18px;border-color:var(--accent-border);background:var(--accent-soft);color:var(--accent-text)}
 .tools-view :is(#search-more,#search-filters)[hidden]{display:none!important}
+/* Official artwork stays proportional; use supplied white variants on dark surfaces. */
+.brand-on-dark{display:none!important}
+html[data-theme=dark] .brand-on-light{display:none!important}
+html[data-theme=dark] .brand-on-dark{display:block!important}
+.site-header .brand .official-brand{display:block;width:82px;height:62px;flex-shrink:0}
+.site-header .brand .official-brand img{display:block;width:100%;height:100%;max-height:none;object-fit:contain;position:static;clip-path:none;content:normal}
+.site-footer .footer-wordmark{display:block;width:116px;max-width:100%;height:100px;line-height:0;letter-spacing:0}
+.site-footer .footer-wordmark img{display:block;width:100%;height:100%;object-fit:contain}
+.official-product{display:block;width:70px;height:72px}
+.official-product img{display:block;width:100%;height:100%;object-fit:contain}
+.workspace-top .product-logo{display:block;line-height:0}
+.workspace-top{padding-block:12px}
+.hero-workspace .workspace-card:nth-child(n) .module-icon{background:transparent}
+.startup-brand{display:block;width:104px;height:73px}
+.app-startup .startup-brand img{width:100%;height:100%;object-fit:contain}
+@media(max-width:720px){.site-header .brand .official-brand{width:76px;height:58px}.official-product{width:58px;height:60px}}
 @media(max-width:380px){.tools-view .popular-needs>button{gap:7px;padding:10px 8px;font-size:11px}.need-symbol{width:28px;height:28px}.popular-needs>button>svg{width:11px;height:11px}}

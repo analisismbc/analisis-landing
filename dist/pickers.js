@@ -2,8 +2,9 @@
 // and changing an option never scrolls the page to a different control.
 const customPickers = new Set();
 function closePickers(){customPickers.forEach(picker=>picker.close());}
+const officialModuleVersions={"finanzas":"49857be08fcb","inventarios":"42e00e970229","personas":"b5128d056cd7","activos":"79447cc0c8a4"};
 function pickerIcon(key){
-  if(['finanzas','inventarios','personas','activos'].includes(key))return `<img class="module-emblem" src="assets/module-${key}.svg" alt="" width="64" height="64">`;
+  if(['finanzas','inventarios','personas','activos'].includes(key))return `<img class="module-emblem" src="assets/module-${key}.svg?v=${officialModuleVersions[key]}" alt="" width="64" height="64">`;
   const paths={
     finanzas:'<path d="M4 20h16M6 20V9h12v11M4 9l8-5 8 5M9 12v5m6-5v5"/>',
     inventarios:'<path d="m3 7 9-4 9 4v10l-9 4-9-4V7Zm0 0 9 4 9-4M12 11v10"/>',
