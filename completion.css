@@ -163,7 +163,7 @@ html[data-theme=dark] .popular-needs [data-need-tone="3"] .need-symbol{color:#e4
 .tools-tabs>button[aria-selected=true] .tool-nav-icon{background:var(--accent-text);color:var(--surface);border-color:var(--accent-text)}
 html[data-theme=dark] .tools-tabs>button[aria-selected=true] .tool-nav-icon{color:#0b1422}
 .tools-view .tools-tabs .tool-nav-count{position:absolute;left:34px;top:6px;display:grid;place-items:center;min-width:18px;min-height:18px;margin:0;padding:0 4px;border:2px solid var(--surface);border-radius:var(--radius-sm);background:var(--accent-text);color:var(--surface);font-size:9px;line-height:1.4;font-weight:700}
-html[data-theme=dark] .tools-view .tools-tabs .tool-nav-count{color:#0b1422}
+html[data-theme=dark] .tools-view .tools-tabs .tool-nav-count{background:var(--accent-text);color:#0b1422}
 .tools-view .tools-tabs>button:focus-visible{outline:2px solid var(--accent-text);outline-offset:-4px;z-index:1}
 @media(max-width:1100px) and (min-width:721px){
  .tools-view .tools-tabs{grid-template-columns:repeat(3,minmax(0,1fr))}
