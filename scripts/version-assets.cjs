@@ -4,7 +4,14 @@ const{createHash}=require('node:crypto');
 const root=path.resolve(__dirname,'..');
 const source=path.join(root,'dist','index.html');
 const original=fs.readFileSync(source,'utf8');
-const versioned=original.replace(/((?:src|href)=")([^"?#]+\.(?:js|css))(?:\?[^"#]*)?(")/g,(match,prefix,file,suffix)=>{
+const manifest=JSON.parse(fs.readFileSync(path.join(root,'dist','manifest.webmanifest'),'utf8'));
+manifest.icons.forEach(icon=>{
+  const file=icon.src.split('?')[0];
+  const hash=createHash('sha256').update(fs.readFileSync(path.join(root,'dist',file))).digest('hex').slice(0,12);
+  icon.src=`${file}?v=${hash}`;
+});
+for(const dir of [root,path.join(root,'dist')])fs.writeFileSync(path.join(dir,'manifest.webmanifest'),JSON.stringify(manifest,null,2)+'\n');
+const versioned=original.replace(/((?:src|href)=")([^"?#]+\.(?:js|css|png|webmanifest))(?:\?[^"#]*)?(")/g,(match,prefix,file,suffix)=>{
   if(/^(?:https?:)?\/\//.test(file))return match;
   const contents=fs.readFileSync(path.join(root,'dist',file));
   const version=createHash('sha256').update(contents).digest('hex').slice(0,12);
@@ -15,7 +22,6 @@ fs.writeFileSync(path.join(root,'index.html'),versioned);
 console.log('Static asset versions updated from content hashes.');
 const refs=[...versioned.matchAll(/(?:src|href)="([^"#]+)"/g)].map(match=>match[1]);
 const local=refs.filter(file=>!file.startsWith('/')&&!/^(?:[a-z]+:|#)/i.test(file)&&fs.existsSync(path.join(root,'dist',file.split('?')[0])));
-const manifest=JSON.parse(fs.readFileSync(path.join(root,'dist','manifest.webmanifest'),'utf8'));
 const cssAssets=[];
 for(const file of local.filter(file=>/\.css(?:\?|$)/.test(file))){
   const css=fs.readFileSync(path.join(root,'dist',file.split('?')[0]),'utf8');
