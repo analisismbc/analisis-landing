@@ -129,5 +129,5 @@ html[data-theme=dark] .pwa-status button{background:var(--surface);border-color:
 html[data-theme=dark] .site-footer{background:#081220;border-color:var(--line)}
 html[data-theme=dark] .skip{background:var(--surface);color:var(--ink)}
 @media(min-width:1101px){html[data-theme=dark] .floating-actions{background:transparent}}
-@media(max-width:1100px){html[data-theme=dark] .site-header #navigation{background:var(--surface);border-color:var(--line)}html[data-theme=dark] .floating-actions .floating-label{background:transparent;border:0;color:inherit}.site-header .header-inner{gap:12px}.site-header #navigation{margin:0}}
+@media(max-width:1100px){html[data-theme=dark] .site-header #navigation{background:var(--surface);border-color:var(--line)}html[data-theme=dark] .floating-actions .floating-label{background:transparent;border:0;color:inherit}.site-header .header-inner{gap:12px}.site-header #navigation{margin:0}.site-header #navigation>.button{margin-left:0}}
 @media(max-width:360px){.site-header .header-inner{gap:8px}.header-actions{gap:6px}.site-header .menu-toggle{font-size:0;width:44px;min-height:44px;padding:10px;gap:0}.site-header .menu-toggle:before{width:19px;height:19px}.theme-toggle{width:44px}}

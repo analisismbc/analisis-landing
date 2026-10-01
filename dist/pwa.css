@@ -1,6 +1,6 @@
 [data-install-app][hidden],.pwa-status[hidden],.pwa-install-now[hidden],.pwa-platform-panel[hidden]{display:none!important}
-.site-header #navigation>.pwa-menu{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-width:44px;min-height:44px;padding:10px;border:1px solid #dce7f4;border-radius:12px;background:#f6f9fe;color:#34659c;cursor:pointer;flex-shrink:0;box-shadow:none}
-.pwa-menu svg{width:21px;height:21px}.pwa-menu span{display:none}
+.site-header #navigation>.pwa-menu{display:inline-flex;align-items:center;justify-content:center;gap:14px;min-width:44px;min-height:44px;margin-left:9px;padding:10px;border:1px solid #dce7f4;border-radius:12px;background:#f6f9fe;color:#34659c;cursor:pointer;flex-shrink:0;box-shadow:none}
+.pwa-menu svg{width:21px;height:21px;flex-shrink:0}.pwa-menu span{display:none}
 .pwa-menu:hover{background:#eaf2ff!important;border-color:#99b9e8!important}
 .pwa-footer{display:inline-flex;align-items:center;gap:9px;border:1px solid #48617b;background:#ffffff08;color:#d8e7ff;border-radius:10px;padding:10px 14px;min-height:44px;cursor:pointer;font:inherit;font-size:12px;margin-top:16px}
 .pwa-footer svg{width:18px;height:18px}.pwa-footer:hover{background:#ffffff12;color:#fff}
@@ -28,6 +28,6 @@
 .pwa-status button{border:1px solid #acc6ea;border-radius:9px;background:#fff;color:#215eac;font:inherit;font-weight:650;cursor:pointer;min-height:36px;padding:6px 12px}
 .pwa-close:focus-visible,.pwa-platforms button:focus-visible,.pwa-install-now:focus-visible,[data-install-app]:focus-visible,.pwa-status button:focus-visible{outline:2px solid #246bfd;outline-offset:3px}
 body:has(.pwa-dialog[open]){overflow:hidden}body:has(.pwa-dialog[open]) .floating-actions{visibility:hidden;pointer-events:none}
-@media(max-width:1100px){.site-header #navigation>.pwa-menu{justify-content:flex-start;min-height:49px;padding:12px 16px;font-size:13px;font-weight:550;border:0;background:#f5f8fd;border-radius:10px}.pwa-menu span{display:block}}
+@media(max-width:1100px){.site-header #navigation>.pwa-menu{justify-content:center;min-height:50px;margin:10px 0 0;padding:13px 18px;font-size:13px;font-weight:550;border:1px solid #dce7f4;background:#f5f8fd;border-radius:10px}.pwa-menu span{display:block}}
 @media(max-width:360px){.pwa-dialog{padding:22px;border-radius:20px}.pwa-dialog h2{font-size:24px}}
 @media(display-mode:standalone){[data-install-app]{display:none!important}}
