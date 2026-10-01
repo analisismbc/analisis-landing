@@ -31,7 +31,7 @@ for(const file of local.filter(file=>/\.css(?:\?|$)/.test(file))){
     if(fs.existsSync(path.join(root,'dist',asset.split('?')[0])))cssAssets.push(asset);
   }
 }
-const assets=[...new Set(['index.html',...local,...cssAssets,...manifest.icons.map(icon=>icon.src),'assets/apple-touch-icon.png'])].sort();
+const assets=[...new Set(['index.html',...local,...cssAssets,...manifest.icons.map(icon=>icon.src),'assets/apple-touch-symbol.png'])].sort();
 const fingerprint=createHash('sha256');
 const template=fs.readFileSync(path.join(__dirname,'sw-template.js'),'utf8');
 fingerprint.update(template);
