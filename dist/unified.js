@@ -48,7 +48,7 @@ function resolveRoute(hash){
 }
 function showRoute(hash,focus=false){
   closePickers();
-  const route=resolveRoute(hash);const changedView=route.view!==currentView;currentView=route.view;
+  const route=resolveRoute(hash);const changedView=route.view!==currentView;currentView=route.view;document.documentElement.dataset.view=route.view;
   views.forEach(view=>{view.hidden=view.dataset.view!==route.view});
   if(route.view==='catalogo'){
     remembered.category=route.category;document.getElementById('catalog-title').textContent=catalogHeadings[route.category][0];document.getElementById('catalog-intro').textContent=catalogHeadings[route.category][1];panels.forEach(panel=>{panel.hidden=panel.dataset.category!==route.category});
@@ -78,6 +78,10 @@ function followInternalLink(e){
   if(!href?.startsWith('#')||e.ctrlKey||e.metaKey||e.shiftKey||e.altKey||(typeof e.button==='number'&&e.button!==0))return;
   e.preventDefault();
   if(link.dataset.consult){const message=document.querySelector('textarea[name="mensaje"]');if(!message.value.trim()||message.dataset.suggested==='true'){message.value=`Me interesa recibir información sobre ${link.dataset.consult}.`;message.dataset.suggested='true'}}
+  if(href==='#contacto'&&currentView==='contacto'){
+    document.getElementById('contact-form').scrollIntoView({behavior:'instant',block:'start'});
+    document.querySelector('#contact-form [name="nombre"]').focus({preventScroll:true});return;
+  }
   const hash=link.dataset.heroModule?`#catalogo/soluciones/${link.dataset.heroModule}`:href;
   const primaryAction=link.closest('#navigation,.brand,.footer-top,.floating-actions');
   navigate(hash,resolveRoute(hash).view!==currentView||Boolean(primaryAction));

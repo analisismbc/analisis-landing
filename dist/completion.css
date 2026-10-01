@@ -17,6 +17,53 @@ footer .footer-contact-actions>.footer-whatsapp{color:#a4d8bf}
 footer .footer-contact-actions>.footer-contact-link{display:flex!important;width:100%;margin:0;border-bottom:0}
 footer .footer-contact-actions>:focus-visible{outline-offset:-3px}
 .contact-social{margin-top:24px;max-width:380px}
+/* One contact workspace, followed by a compact shared footer. */
+.contact .contact-heading{margin-bottom:24px}
+.contact-heading .eyebrow{margin-bottom:8px}
+.contact-heading>p:last-child{font-size:14px;color:var(--muted);margin:12px 0 0}
+.contact .contact-layout{grid-template-columns:1.1fr 1fr;gap:24px 40px;align-items:start}
+.contact #contact-form{grid-column:1;grid-row:1 / span 2;scroll-margin-top:16px;padding:24px;margin:0}
+.contact #contact-form h2{font-size:21px;margin-bottom:18px}
+.contact .contact-channels{grid-column:2;grid-row:1}
+.contact .contact-channels h2,.contact .contact-location h2{font-size:16px;line-height:1.5;letter-spacing:0;margin:0 0 12px}
+.contact-channel-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border:1px solid var(--line);border-radius:var(--radius-control);overflow:hidden;background:var(--surface)}
+.contact-channel-grid>a{display:flex;flex-direction:column;justify-content:center;gap:3px;min-width:0;min-height:66px;padding:12px;font-size:12px;line-height:1.6}
+.contact-channel-grid>a:nth-child(even){border-left:1px solid var(--line)}
+.contact-channel-grid>a:nth-child(n+3){border-top:1px solid var(--line)}
+.contact-channel-grid span{font-size:11px;color:var(--muted)}
+.contact-channel-grid strong{font-weight:600;overflow-wrap:anywhere;color:var(--ink)}
+.contact-channel-grid>a:hover{background:var(--surface-subtle)}
+.contact-channel-grid>a:focus-visible{outline-offset:-3px}
+.contact .contact-location{grid-column:2;grid-row:2;margin:0;padding:0;border:0;max-width:none}
+.contact .location-map{height:200px}
+.contact .location-map iframe{height:100%;width:100%}
+.contact details.purchase-questions{margin-top:24px;padding:0;border:1px solid var(--line);border-radius:var(--radius-control);background:var(--surface)}
+.contact details.purchase-questions>summary{display:flex;align-items:center;justify-content:space-between;min-height:48px;padding:12px 18px;list-style:none;font-size:14px}
+.contact details.purchase-questions>summary::-webkit-details-marker{display:none}
+.contact details.purchase-questions>summary:after{content:'›';font-size:22px;line-height:1;transform:rotate(90deg)}
+.contact details.purchase-questions[open]>summary:after{transform:rotate(-90deg)}
+.purchase-content{border-top:1px solid var(--line);padding:0 18px}
+html[data-view=contacto] .site-footer .footer-contact,html[data-view=contacto] .site-footer .footer-column,html[data-view=contacto] .floating-contact,html[data-view=contacto] .floating-whatsapp{display:none!important}
+html[data-view=contacto] .site-footer .footer-main{display:block;padding:28px 0 22px}
+html[data-view=contacto] .footer-identity{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:10px 24px}
+html[data-view=contacto] .footer-identity>p{display:none}
+html[data-view=contacto] .footer-identity>.social-links{grid-column:2;grid-row:1 / span 2;margin:0;max-width:380px;justify-self:end;width:100%}
+html[data-view=contacto] .footer-wordmark{font-size:32px}
+html[data-view=contacto] .footer-origin{font-size:10px}
+@media(max-width:720px){
+ .contact .contact-heading{margin-bottom:20px}
+ .contact .contact-layout{grid-template-columns:1fr;gap:22px}
+ .contact .contact-channels{grid-column:1;grid-row:1}
+ .contact #contact-form{grid-column:1;grid-row:2;padding:20px 16px}
+ .contact .contact-location{grid-column:1;grid-row:3}
+ .contact-channel-grid>a{padding:10px;min-height:60px;font-size:11px}
+ .contact #contact-form .form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ .contact #contact-form .form-grid input{min-width:0;width:100%}
+ .contact #contact-form .form-actions{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .contact #contact-form .form-actions>.button{min-height:48px;padding:10px 8px;font-size:12px!important}
+ html[data-view=contacto] .footer-identity{grid-template-columns:1fr}
+ html[data-view=contacto] .footer-identity>.social-links{grid-column:1;grid-row:3;justify-self:start;margin-top:8px;max-width:none}
+}
 .contact .contact-social>h2{font-size:14px;line-height:1.5;letter-spacing:0;margin:0 0 12px}
 .founder-profile{display:flex;align-items:center;gap:16px;margin-top:22px;padding:14px;border:1px solid var(--line);border-radius:var(--radius-card);background:var(--surface-subtle)}
 .founder-profile img{width:72px;height:72px;border-radius:var(--radius-control);object-fit:cover;flex-shrink:0}
@@ -74,3 +121,6 @@ html[data-motion=static] body *,html[data-motion=static] body *::before,html[dat
  .blog-article>h2{font-size:19px}
  .blog-article .tool-actions>.tool-button{min-height:60px;width:100%;padding:10px;font-size:12px;line-height:1.6}
 }
+
+.contact #contact-form .form-actions>.whatsapp-action{background:#176c4d;color:#fff}
+.contact #contact-form .form-actions>.email-action{background:var(--accent-soft);color:var(--accent-text)}
