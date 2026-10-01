@@ -34,3 +34,9 @@
 .contact-general a,.experience-source{color:var(--accent-text,var(--blue));text-decoration:underline;text-underline-offset:3px}
 @media(max-width:1000px){.proof{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px 24px}.proof .text-link{grid-column:1/-1;justify-self:start;margin:0}}
 @media(max-width:720px){.proof{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 16px;padding-block:24px}.proof>div>strong{font-size:24px}.proof>div>span{font-size:11px}.proof .text-link{grid-column:auto;justify-self:start;font-size:11px;margin:0}}
+
+@media(max-width:720px){
+ #solution-content>.tool-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;align-items:stretch}
+ #solution-content>.tool-actions>.tool-button{display:flex;flex-direction:column;justify-content:center;gap:8px;width:100%;min-width:0;min-height:82px;padding:12px 8px;font-size:12px;line-height:1.5;white-space:normal;text-wrap:balance;text-align:center}
+ #solution-content>.tool-actions>.tool-button::before{width:20px;height:20px}
+}

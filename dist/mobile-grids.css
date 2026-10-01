@@ -1,0 +1,44 @@
+/* Pair compact items on mobile while keeping prose and accordion rows readable. */
+@media(max-width:720px){
+ .category-panel :is(.module-panel,.client-grid article,.license-card,.service-grid article)>ul,
+ .category-panel .sector-features{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;
+  list-style:none;padding:0;
+ }
+ .category-panel :is(.module-panel,.client-grid article,.license-card,.service-grid article)>ul>li,
+ .category-panel .sector-features>li{
+  position:relative;min-width:0;margin:0;padding:12px 10px 12px 28px;
+  background:var(--surface-subtle);border:1px solid var(--line);border-radius:var(--radius-sm);
+  font-size:12px;line-height:1.7;color:var(--text-secondary);overflow-wrap:break-word;
+ }
+ .category-panel :is(.module-panel,.client-grid article,.license-card,.service-grid article)>ul>li::before,
+ .category-panel .sector-features>li::before{
+  content:'';position:absolute;left:9px;top:15px;width:13px;height:13px;border:0;border-radius:0;
+  background:var(--accent-text);pointer-events:none;
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5 12 4 4L19 6'/%3E%3C/svg%3E") center/contain no-repeat;
+  mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5 12 4 4L19 6'/%3E%3C/svg%3E") center/contain no-repeat;
+ }
+ .tools-view :is(.popular-needs,.tool-segments,.plan-stages){display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ .tools-view :is(.popular-needs,.tool-segments,.plan-stages)>button{min-width:0;width:100%;min-height:48px;white-space:normal;line-height:1.6;padding:10px 9px;justify-content:center}
+ .tools-view .choice-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ .tools-view .choice-card{flex-direction:column;gap:10px;min-width:0;min-height:120px;padding:13px;align-items:flex-start}
+ .tools-view .choice-card strong{font-size:12px;line-height:1.6;overflow-wrap:break-word}
+ .tools-view .choice-card small{font-size:11px;line-height:1.65}
+ .tools-view .choice-mark{margin:0}
+ #solution-content .solution-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ #solution-content .solution-row{position:relative;display:flex;align-items:stretch;padding:14px;gap:0;min-width:0}
+ #solution-content .solution-row .tool-kicker{display:block;max-width:calc(100% - 32px);font-size:8px;line-height:1.5}
+ #solution-content .solution-row h2{font-size:16px;line-height:1.45;margin:28px 0 8px;overflow-wrap:break-word}
+ #solution-content .solution-row .tool-link{font-size:11px;line-height:1.6;min-height:44px}
+ #solution-content .solution-row .remove-option{position:absolute;right:7px;top:7px}
+ #view-nosotros .timeline{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ #view-nosotros .timeline>p{margin:0;padding:12px;border:1px solid var(--line);border-radius:var(--radius-sm);background:var(--surface-subtle);font-size:12px;line-height:1.7}
+ #view-nosotros .timeline b{display:block;min-width:0;margin-bottom:4px;font-size:15px;line-height:1.5;color:var(--accent-text)}
+}
+@media(max-width:360px){
+ #solution-content .solution-row{padding:12px}
+ #solution-content .solution-row h2{font-size:15px}
+ .tools-view .choice-card{padding:11px}
+ .category-panel :is(.module-panel,.client-grid article,.license-card,.service-grid article)>ul>li,
+ .category-panel .sector-features>li{padding-left:25px;font-size:11px}
+}
