@@ -29,3 +29,9 @@ Los complementos de archivos bancarios para proveedores y colaboradores tienen i
 `node scripts/version-assets.cjs` genera también `sw.js` en raíz y `dist/` desde `scripts/sw-template.js`. El contenido de cada recurso determina la versión de caché. El worker guarda únicamente el shell y los recursos estáticos locales; conserva el catálogo y las herramientas sin conexión después de la primera carga completada. No guarda datos del formulario, peticiones externas ni respuestas de autenticación. WhatsApp y correo requieren conectividad para enviar mensajes. Una versión nueva muestra «Actualizar app», para que la persona decida cuándo recargar.
 
 Las rutas del manifiesto, el registro y la caché son relativas y funcionan tanto en `/analisis-landing/` de GitHub Pages como en la raíz de Sites. El service worker requiere HTTPS o localhost. Al cambiar recursos, mantenga las dos copias sincronizadas y regenere `sw.js` antes de publicar.
+
+## Catálogo y temas
+
+`catalog-layout.js` organiza el contenido existente en navegación de categorías, opciones y detalles. No duplica ofertas ni cambia sus identificadores. `catalog-layout.css` presenta la navegación lateral en escritorio y selectores personalizados en móvil, con módulos compactos y acciones agrupadas al final de cada detalle.
+
+`theme.js` se ejecuta al principio de la página para aplicar el tema antes de mostrar el contenido. Usa la preferencia del sistema hasta que la persona elige modo claro u oscuro con el botón del header; guarda esa elección bajo `analisis-theme` y la sincroniza entre pestañas. `theme.css` cubre catálogo, herramientas, formularios, navegación e instalación. El generador de `sw.js` incluye también los recursos locales referidos por CSS, para conservar el tema y la marca sin conexión.

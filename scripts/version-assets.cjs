@@ -16,7 +16,16 @@ console.log('Static asset versions updated from content hashes.');
 const refs=[...versioned.matchAll(/(?:src|href)="([^"#]+)"/g)].map(match=>match[1]);
 const local=refs.filter(file=>!file.startsWith('/')&&!/^(?:[a-z]+:|#)/i.test(file)&&fs.existsSync(path.join(root,'dist',file.split('?')[0])));
 const manifest=JSON.parse(fs.readFileSync(path.join(root,'dist','manifest.webmanifest'),'utf8'));
-const assets=[...new Set(['index.html',...local,...manifest.icons.map(icon=>icon.src),'assets/apple-touch-icon.png'])].sort();
+const cssAssets=[];
+for(const file of local.filter(file=>/\.css(?:\?|$)/.test(file))){
+  const css=fs.readFileSync(path.join(root,'dist',file.split('?')[0]),'utf8');
+  for(const match of css.matchAll(/url\(['"]?([^)'"\s]+)['"]?\)/g)){
+    if(/^(?:[a-z]+:|\/)/i.test(match[1]))continue;
+    const asset=path.posix.join(path.posix.dirname(file.split('?')[0]),match[1]);
+    if(fs.existsSync(path.join(root,'dist',asset.split('?')[0])))cssAssets.push(asset);
+  }
+}
+const assets=[...new Set(['index.html',...local,...cssAssets,...manifest.icons.map(icon=>icon.src),'assets/apple-touch-icon.png'])].sort();
 const fingerprint=createHash('sha256');
 const template=fs.readFileSync(path.join(__dirname,'sw-template.js'),'utf8');
 fingerprint.update(template);
