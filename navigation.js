@@ -31,7 +31,7 @@
   function updateActions(){
     const route=resolveRoute(location.hash||'#inicio');
     document.querySelectorAll('.floating-action[href^="#"]').forEach(link=>{
-      const target=resolveRoute(link.getAttribute('href'));const on=route.view==='herramientas'&&target.tool===route.tool;
+      const target=resolveRoute(link.getAttribute('href'));const on=route.view===target.view&&(target.view!=='herramientas'||target.tool===route.tool);
       if(on)link.setAttribute('aria-current','page');else link.removeAttribute('aria-current');
     });
     const count=Number(document.querySelector('.floating-count').textContent)||0;
