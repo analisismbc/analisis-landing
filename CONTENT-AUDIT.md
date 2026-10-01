@@ -49,3 +49,7 @@ Integración realizada el 1 de octubre de 2026 con las publicaciones públicas d
 | ventas@analisis.cr y asesor 8695-0367 | https://www.facebook.com/analisismbc/posts/pfbid0RrDcKKQ5sKEinpbpYFVZjpbWGhZCwf5jvSm9xk5nWxuU8ZEP5Rz9439DWZDEoGWsl | Correo comercial en Contacto, pie, formulario y PDF; WhatsApp existente conservado |
 
 Los clientes activos y los clientes acumulados son métricas distintas. Las implementaciones y los programas instalados conservan sus denominaciones originales. Se mantienen las cifras y países históricos de analisis.cr bajo su atribución, sin sumarlos ni tratarlos como cifras actuales. No se altera la dirección: Facebook y la web institucional difieren en la distancia de referencia. Las cifras son publicadas por la empresa; no son contadores en tiempo real. No se añaden reseñas, nombres de clientes ni promesas nuevas.
+
+## Representación en Perú
+
+Se incorpora el hito «2026 · Representación en Perú» a la trayectoria de Nosotros, indicado expresamente por el propietario en esta conversación el 1 de octubre de 2026.
