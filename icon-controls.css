@@ -1,0 +1,33 @@
+/* Icon geometry is independent of font metrics and platform button padding. */
+.remove-option,.needs-input>button[data-action=clear-search],.pwa-close{
+ display:grid;place-items:center;align-self:center;flex:0 0 44px;box-sizing:border-box;
+ width:44px;height:44px;min-width:44px;min-height:44px;margin:0;padding:0;
+ font-size:0;line-height:1;letter-spacing:0;text-indent:0;text-align:center;
+ border-radius:var(--radius-control);appearance:none;-webkit-appearance:none;
+ touch-action:manipulation;
+}
+.remove-option svg,.needs-input>button[data-action=clear-search] svg,.pwa-close svg{
+ display:block;width:20px;height:20px;margin:0;flex-shrink:0;pointer-events:none;
+}
+.remove-option:focus-visible,.needs-input>button[data-action=clear-search]:focus-visible,.pwa-close:focus-visible{
+ outline:2px solid var(--accent-text,var(--blue));outline-offset:3px;
+}
+/* A disclosure row is the touch target; its plus/minus is only an indicator. */
+details:not(.footer-group)>summary{
+ display:flex;align-items:center;justify-content:space-between;gap:16px;
+ min-height:48px;padding-right:0;list-style:none;touch-action:manipulation;
+}
+details:not(.footer-group)>summary::-webkit-details-marker{display:none}
+details:not(.footer-group)>summary::after{
+ content:'';position:static;inset:auto;display:block;flex:0 0 20px;
+ width:20px;height:20px;margin:0;padding:0;border:0;border-radius:0;
+ font-size:0;line-height:0;transform:none;pointer-events:none;
+ background:var(--accent-text,var(--blue));
+ --disclosure-icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round'%3E%3Cpath d='M12 5v14M5 12h14'/%3E%3C/svg%3E");
+ -webkit-mask:var(--disclosure-icon) center/20px 20px no-repeat;
+ mask:var(--disclosure-icon) center/20px 20px no-repeat;
+}
+details:not(.footer-group)[open]>summary::after{
+ content:'';
+ --disclosure-icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round'%3E%3Cpath d='M5 12h14'/%3E%3C/svg%3E");
+}
