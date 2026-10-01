@@ -69,3 +69,9 @@ La revisión del HTML institucional confirma Facebook (`https://www.facebook.com
 Inicio incluye dos artículos del blog, con las fechas originales de marzo de 2023, sin presentarlos como noticias de 2026. Nosotros incorpora el retrato institucional y la ficha de Juan Carlos Bertsch, socio fundador. Los detalles, módulos, licenciamiento, versiones, sectores, servicios, clientes y mapa se conservan en sus ubicaciones existentes.
 
 Las entradas y sustituciones de contenido duran 160–260 ms y animan opacidad y desplazamientos de 2–5 px, sin modificar tamaños ni desplazar la lectura. Un observador muestra bloques una sola vez; no hay ciclos decorativos ni trabajo continuo al quedar inactiva la página. La preferencia de movimiento reducido y el ahorro de datos desactivan los efectos; el contenido funciona sin animaciones.
+
+## Sustitución de la web anterior
+
+Por indicación del propietario, se retiran de la interfaz todos los enlaces a la web anterior y las notas que remiten a otra web institucional. Los testimonios y el directorio de clientes permanecen dentro de la nueva página. Las condiciones comerciales se consultan aquí; el comparador deja de incluir una salida a la web anterior.
+
+Los dos artículos destacados se adaptan como lecturas breves en el blog interno, con rutas propias, navegación y breadcrumbs. Los enlaces compartidos de selecciones usan el dominio y la ruta de la instalación actual. Los correos corporativos, mapas y redes sociales se conservan como canales reales de contacto. Las fuentes históricas de este documento son documentación interna y no se muestran en el sitio.

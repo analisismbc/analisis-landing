@@ -16,6 +16,10 @@
       if(group){const item=group.items.find(item=>!item.hidden);if(item)steps.push({label:item.querySelector('h2,h3').textContent});}
       else if(route.category==='soluciones'){const key=document.querySelector('[data-module][aria-selected=true]')?.dataset.module;if(key)steps.push({label:moduleLabels[key]});}
       else if(route.category==='sectores'){const selected=document.querySelector('[data-sector][aria-pressed=true]');if(selected)steps.push({label:selected.textContent});}
+    }else if(route.view==='blog'){
+      steps.push({label:'Blog',href:'#blog'});
+      const labels={'erp-contadores':'ERP para contadores','erp-pymes':'ERP para pymes'};
+      if(labels[route.article])steps.push({label:labels[route.article]});
     }else if(route.view==='herramientas'){
       const key=document.querySelector('[data-tool][aria-selected=true]')?.dataset.tool||route.tool;
       steps.push({label:'Herramientas',href:'#herramientas/asesor'});steps.push({label:toolLabels[key]||toolLabels.asesor});

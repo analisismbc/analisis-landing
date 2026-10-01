@@ -47,3 +47,22 @@ body .reveal{opacity:1;transform:none;transition:none}
 }
 @media(prefers-reduced-motion:reduce){body *,body *::before,body *::after{animation:none!important;transition:none!important}}
 html[data-motion=static] body *,html[data-motion=static] body *::before,html[data-motion=static] body *::after{animation:none!important;transition:none!important}
+.blog-view{background:var(--page);padding-block:30px 48px}
+.blog-view [hidden]{display:none!important}
+.blog-heading{max-width:860px;margin-bottom:24px}
+.blog-heading h1{font-size:clamp(28px,3.5vw,44px);line-height:1.3;letter-spacing:-.6px;margin:0}
+.blog-heading>p:last-child{font-size:14px;color:var(--muted);margin-top:12px}
+.blog-article{max-width:860px;border:1px solid var(--line);border-radius:var(--radius-panel);background:var(--surface);padding:30px}
+.blog-article>time{font-size:12px;color:var(--muted)}
+.blog-article>p{font-size:15px;line-height:1.9;color:var(--text-secondary);margin:20px 0}
+.blog-article>h2{font-size:22px;line-height:1.5;letter-spacing:0;margin:25px 0 10px}
+.blog-back{margin-top:18px}
+@media(max-width:720px){
+ .blog-view{padding-block:23px 30px}
+ .blog-heading{margin-bottom:20px}
+ .blog-heading h1{font-size:27px;letter-spacing:0}
+ .blog-article{padding:22px 18px}
+ .blog-article>p{font-size:13px;line-height:1.85;margin-block:18px}
+ .blog-article>h2{font-size:19px}
+ .blog-article .tool-actions>.tool-button{min-height:60px;width:100%;padding:10px;font-size:12px;line-height:1.6}
+}

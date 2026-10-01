@@ -36,6 +36,7 @@ function selectChoice(category,id){const group=choiceGroups[category];if(!group)
 function resolveRoute(hash){
   const parts=hash.replace(/^#/,'').split('/');const key=parts[0];
   if(key==='herramientas')return{view:'herramientas',tool:parts[1]?.split('?')[0]||'asesor'};
+  if(key==='blog')return{view:'blog',article:parts[1]||null};
   if(['inicio','nosotros','contacto'].includes(key))return{view:key};
   if(key==='contenido')return{view:currentView||'inicio',category:remembered.category,choice:remembered.choices[remembered.category],tool:document.querySelector('[data-tool][aria-selected=true]')?.dataset.tool||'asesor'};
   if((key==='catalogo'&&parts[1]==='apps')||key==='apps'||key==='apps-moviles')return{view:'catalogo',category:'servicios',choice:'servicio-apps'};
@@ -57,7 +58,7 @@ function showRoute(hash,focus=false){
   }
   primaryNav.querySelectorAll('a').forEach(a=>{const selected=a.getAttribute('href')===`#${route.view}`;a.classList.toggle('current',selected);if(selected)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
   closeNavigation();
-  document.title=`${{inicio:'Análisis MBC · Software empresarial',catalogo:'Soluciones y servicios · Análisis MBC',herramientas:'Encuentre su solución · Análisis MBC',nosotros:'Nuestra empresa · Análisis MBC',contacto:'Contacto · Análisis MBC'}[route.view]}`;
+  document.title=`${{inicio:'Análisis MBC · Software empresarial',catalogo:'Soluciones y servicios · Análisis MBC',herramientas:'Encuentre su solución · Análisis MBC',nosotros:'Nuestra empresa · Análisis MBC',contacto:'Contacto · Análisis MBC',blog:'Blog · Análisis MBC'}[route.view]}`;
   if(route.view==='herramientas')window.SiteTools?.show(route.tool);
   if(route.view==='catalogo'&&route.category==='complementos'){
     const detail=hash.split('/')[3];if(detail){const compatible=detail==='extra-archivos-bancarios-para-pago'?`${detail}-${route.choice?.replace('complemento-','')||'personas'}`:detail;const item=document.getElementById(compatible);if(item?.tagName==='DETAILS'&&item.closest('[data-category="complementos"]'))item.open=true;}

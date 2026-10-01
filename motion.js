@@ -27,7 +27,8 @@
  function screen(event){
   const view=document.querySelector('.route-view:not([hidden])');
   const route=event?.detail;const key=route?`${route.view}/${route.category||route.tool||''}`:view?.id;
-  if(key!==previousRoute)queue(view?.querySelector('.hero-copy,.explorer-top,.tools-heading,.about>div,.contact-layout>div'));
+  if(key!==previousRoute)queue(view?.querySelector('.hero-copy,.explorer-top,.tools-heading,.about>div,.contact-layout>div,.blog-heading'));
+  if(route?.view==='blog')queue(view.querySelector('.blog-article:not([hidden])'),true);
   if(route?.view==='catalogo')queue(view.querySelector('.category-panel:not([hidden]) .catalog-detail'),true);
   previousRoute=key;
  }
