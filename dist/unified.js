@@ -1,7 +1,11 @@
 const primaryNav=document.getElementById('navigation');
 const menuToggle=document.querySelector('.menu-toggle');
 const categoryButtons=[...document.querySelectorAll('[data-category-button]')];
-const categorySelect=document.getElementById('category-select');
+const categoryPicker=createPicker(document.getElementById('category-picker'),{
+  id:'category-select',label:'Explorar por',
+  options:categoryButtons.map(button=>({value:button.dataset.categoryButton,label:button.textContent})),
+  onChange:category=>navigate(`#catalogo/${category}`)
+});
 const views=[...document.querySelectorAll('[data-view]')];
 const panels=[...document.querySelectorAll('[data-category]')];
 const remembered={category:'soluciones',choices:{}};
@@ -16,18 +20,18 @@ function addChoices(category,gridSelector,labels){
   const grid=document.querySelector(gridSelector);
   const items=[...grid.children];
   const controls=document.createElement('div');controls.className='item-choices';controls.setAttribute('aria-label',`Opciones de ${category}`);
-  const selectLabel=document.createElement('label');selectLabel.className='item-select-label';selectLabel.textContent='Seleccione una opción';
-  const select=document.createElement('select');select.setAttribute('aria-label',`Elegir ${category}`);selectLabel.append(select);
-  const buttons=items.map((item,i)=>{const name=labels?.[i]||item.querySelector('h3').textContent;const button=document.createElement('button');button.type='button';button.textContent=name;button.dataset.choice=item.id;button.setAttribute('aria-controls',item.id);button.setAttribute('aria-pressed','false');controls.append(button);select.add(new Option(name,item.id));button.addEventListener('click',()=>navigate(`#catalogo/${category}/${item.id}`));return button});
-  grid.before(controls,selectLabel);
-  select.addEventListener('change',()=>navigate(`#catalogo/${category}/${select.value}`));
-  choiceGroups[category]={items,buttons,select};
+  const pickerContainer=document.createElement('div');pickerContainer.className='item-select-label';
+  const options=items.map((item,i)=>({value:item.id,label:labels?.[i]||item.querySelector('h3').textContent}));
+  const buttons=items.map((item,i)=>{const button=document.createElement('button');button.type='button';button.textContent=options[i].label;button.dataset.choice=item.id;button.setAttribute('aria-controls',item.id);button.setAttribute('aria-pressed','false');controls.append(button);button.addEventListener('click',()=>navigate(`#catalogo/${category}/${item.id}`));return button});
+  grid.before(controls,pickerContainer);
+  const picker=createPicker(pickerContainer,{id:`choice-${category}`,label:'Seleccione una opción',options,onChange:id=>navigate(`#catalogo/${category}/${id}`)});
+  choiceGroups[category]={items,buttons,picker};
 }
 addChoices('clientes','.client-grid');
 addChoices('versiones','.version-grid');
 addChoices('complementos','.complement-grid');
 addChoices('servicios','.service-grid');
-function selectChoice(category,id){const group=choiceGroups[category];if(!group)return;const chosen=group.items.find(item=>item.id===id)||group.items.find(item=>item.id===remembered.choices[category])||group.items[0];remembered.choices[category]=chosen.id;group.items.forEach(item=>{item.hidden=item!==chosen});group.buttons.forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.choice===chosen.id)));group.select.value=chosen.id;}
+function selectChoice(category,id){const group=choiceGroups[category];if(!group)return;const chosen=group.items.find(item=>item.id===id)||group.items.find(item=>item.id===remembered.choices[category])||group.items[0];remembered.choices[category]=chosen.id;group.items.forEach(item=>{item.hidden=item!==chosen});group.buttons.forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.choice===chosen.id)));group.picker.setValue(chosen.id);}
 function resolveRoute(hash){
   const parts=hash.replace(/^#/,'').split('/');const key=parts[0];
   if(['inicio','nosotros','contacto'].includes(key))return{view:key};
@@ -39,11 +43,12 @@ function resolveRoute(hash){
   return{view:'inicio'};
 }
 function showRoute(hash,focus=false){
+  closePickers();
   const route=resolveRoute(hash);const changedView=route.view!==currentView;currentView=route.view;
   views.forEach(view=>{view.hidden=view.dataset.view!==route.view});
   if(route.view==='catalogo'){
     remembered.category=route.category;panels.forEach(panel=>{panel.hidden=panel.dataset.category!==route.category});
-    categoryButtons.forEach(button=>{const selected=button.dataset.categoryButton===route.category;button.setAttribute('aria-selected',String(selected));button.tabIndex=selected?0:-1});categorySelect.value=route.category;
+    categoryButtons.forEach(button=>{const selected=button.dataset.categoryButton===route.category;button.setAttribute('aria-selected',String(selected));button.tabIndex=selected?0:-1});categoryPicker.setValue(route.category);
     selectChoice(route.category,route.choice);
     if(route.category==='soluciones'&&modules[route.choice])selectModule(document.querySelector(`[data-module="${route.choice}"]`));
   }
@@ -56,7 +61,7 @@ function showRoute(hash,focus=false){
 }
 function navigate(hash,focus=false){if(location.hash!==hash)history.pushState({},'',hash);showRoute(hash,focus);}
 categoryButtons.forEach((button,index)=>{button.addEventListener('click',()=>navigate(`#catalogo/${button.dataset.categoryButton}`));button.addEventListener('keydown',e=>{let next;if(['ArrowRight','ArrowDown'].includes(e.key))next=(index+1)%categoryButtons.length;if(['ArrowLeft','ArrowUp'].includes(e.key))next=(index+categoryButtons.length-1)%categoryButtons.length;if(e.key==='Home')next=0;if(e.key==='End')next=categoryButtons.length-1;if(next!==undefined){e.preventDefault();categoryButtons[next].click();categoryButtons[next].focus({preventScroll:true})}})});
-categorySelect.addEventListener('change',()=>navigate(`#catalogo/${categorySelect.value}`));
+
 document.addEventListener('click',e=>{
   const link=e.target.closest('a');if(!link||!link.getAttribute('href')?.startsWith('#')||e.ctrlKey||e.metaKey||e.shiftKey||e.altKey||e.button!==0)return;
   e.preventDefault();
