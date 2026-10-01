@@ -1,0 +1,49 @@
+.social-links{position:static;inset:auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch;gap:0;width:100%;height:auto;max-height:none;padding:0;margin:0;border:1px solid var(--line);border-radius:var(--radius-control);overflow:hidden;max-width:380px;background:var(--surface-subtle);box-shadow:none}
+.social-links>a{display:flex;align-items:center;justify-content:center;gap:9px;padding:12px 10px;min-height:46px;min-width:0;font-size:12px;font-weight:600;line-height:1.5;color:var(--text-secondary);text-decoration:none}
+.social-links>a:nth-child(even){border-left:1px solid var(--line)}
+.social-links>a:nth-child(n+3){border-top:1px solid var(--line)}
+.social-links svg{width:19px;height:19px;flex-shrink:0}
+.social-links>a:focus-visible{outline:2px solid var(--accent-text);outline-offset:-3px}
+.social-links>a:hover{background:var(--accent-soft);color:var(--accent-text)}
+.footer-identity>.social-links{margin-top:22px;border-color:#48617b;background:#ffffff05}
+.footer-identity>.social-links>a{color:#c9daf2;font-size:11px;border-color:#48617b}
+.footer-identity>.social-links>a:hover{background:#ffffff0d;color:#fff}
+.contact-social{margin-top:24px;max-width:380px}
+.contact .contact-social>h2{font-size:14px;line-height:1.5;letter-spacing:0;margin:0 0 12px}
+.founder-profile{display:flex;align-items:center;gap:16px;margin-top:22px;padding:14px;border:1px solid var(--line);border-radius:var(--radius-card);background:var(--surface-subtle)}
+.founder-profile img{width:72px;height:72px;border-radius:var(--radius-control);object-fit:cover;flex-shrink:0}
+.founder-profile h2{font-size:17px;line-height:1.5;letter-spacing:0;margin:0}
+.about .founder-profile p{font-size:12px;line-height:1.6;margin:4px 0 0;color:var(--muted)}
+.resources{padding-block:32px 42px;border-top:1px solid var(--line)}
+.resources-heading{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:18px}
+.resources-heading h2{font-size:25px;line-height:1.4;letter-spacing:-.3px;margin:0}
+.resources-heading>a{display:flex;align-items:center;min-height:44px;font-size:12px;color:var(--accent-text);gap:7px}
+.resources-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border:1px solid var(--line);border-radius:var(--radius-card);overflow:hidden;background:var(--surface)}
+.resource-card{display:flex;flex-direction:column;gap:10px;padding:24px;min-width:0;color:var(--ink)}
+.resource-card+ .resource-card{border-left:1px solid var(--line)}
+.resource-card time{font-size:10px;line-height:1.5;color:var(--muted)}
+.resource-card h3{font-size:18px;line-height:1.55;letter-spacing:0;margin:0}
+.resource-card>span{margin-top:auto;font-size:11px;line-height:1.5;color:var(--accent-text)}
+.resource-card:focus-visible{outline:2px solid var(--accent-text);outline-offset:-4px}
+/* State changes use short feedback; long scrolls and decorative loops stay static. */
+body :is(.button,.tool-button,.workspace-card,.picker-trigger,.picker-option,.client-selector>button,.social-links>a,.resource-card,.theme-toggle,.menu-toggle,.floating-action){transition:background-color 140ms ease,border-color 140ms ease,color 140ms ease}
+body :is(.button,.tool-button,.picker-trigger,.menu-toggle,.theme-toggle):active{filter:brightness(.94)}
+body .reveal{opacity:1;transform:none;transition:none}
+@keyframes panel-enter{from{opacity:.65}to{opacity:1}}
+.site-header #navigation.open,.picker-list:not([hidden]),details[open]>.disclosure-content{animation:panel-enter 160ms ease-out}
+@media(hover:hover) and (pointer:fine){.resource-card:hover{background:var(--accent-soft)}}
+@media(max-width:720px){
+ .resources{padding-block:26px 30px}
+ .resources-heading{gap:12px;margin-bottom:14px}
+ .resources-heading h2{font-size:22px}
+ .resources-heading>a{font-size:11px}
+ .resource-card{padding:16px 12px;gap:9px}
+ .resource-card h3{font-size:13px;line-height:1.65}
+ .resource-card time{font-size:9px}
+ .resource-card>span{font-size:10px}
+ .founder-profile{gap:12px;padding:12px}
+ .founder-profile img{width:64px;height:64px}
+ .founder-profile h2{font-size:15px}
+}
+@media(prefers-reduced-motion:reduce){body *,body *::before,body *::after{animation:none!important;transition:none!important}}
+html[data-motion=static] body *,html[data-motion=static] body *::before,html[data-motion=static] body *::after{animation:none!important;transition:none!important}

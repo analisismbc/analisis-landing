@@ -61,3 +61,11 @@ Los clientes activos y los clientes acumulados son métricas distintas. Las impl
 ## Representación en Perú
 
 Se incorpora el hito «2026 · Representación en Perú» a la trayectoria de Nosotros, indicado expresamente por el propietario en esta conversación el 1 de octubre de 2026.
+
+## Redes, recursos y transiciones
+
+La revisión del HTML institucional confirma Facebook (`https://www.facebook.com/analisismbc/`), Instagram (`https://www.instagram.com/analisismbc/`) y LinkedIn (`https://www.linkedin.com/company/analisismbc`). Se enlazan directamente desde Contacto y el pie, con nombres visibles, sin cargar widgets de seguimiento.
+
+Inicio incluye dos artículos del blog, con las fechas originales de marzo de 2023, sin presentarlos como noticias de 2026. Nosotros incorpora el retrato institucional y la ficha de Juan Carlos Bertsch, socio fundador. Los detalles, módulos, licenciamiento, versiones, sectores, servicios, clientes y mapa se conservan en sus ubicaciones existentes.
+
+Las entradas y sustituciones de contenido duran 160–260 ms y animan opacidad y desplazamientos de 2–5 px, sin modificar tamaños ni desplazar la lectura. Un observador muestra bloques una sola vez; no hay ciclos decorativos ni trabajo continuo al quedar inactiva la página. La preferencia de movimiento reducido y el ahorro de datos desactivan los efectos; el contenido funciona sin animaciones.
