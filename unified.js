@@ -23,7 +23,7 @@ function addChoices(category,gridSelector,labels){
   const controls=document.createElement('div');controls.className='item-choices';controls.setAttribute('aria-label',`Opciones de ${category}`);
   const pickerContainer=document.createElement('div');pickerContainer.className='item-select-label';
   const options=items.map((item,i)=>({value:item.id,label:labels?.[i]||item.querySelector('h2,h3').textContent}));
-  const buttons=items.map((item,i)=>{const button=document.createElement('button');button.type='button';button.textContent=options[i].label;button.dataset.choice=item.id;button.setAttribute('aria-controls',item.id);button.setAttribute('aria-pressed','false');controls.append(button);button.addEventListener('click',()=>navigate(`#catalogo/${category}/${item.id}`));return button});
+  const buttons=items.map((item,i)=>{const button=document.createElement('button');button.type='button';const icon=document.createElement('span');icon.className='control-symbol';icon.setAttribute('aria-hidden','true');icon.innerHTML=pickerIcon(item.id);const text=document.createElement('span');text.className='control-label';text.textContent=options[i].label;button.append(icon,text);button.dataset.choice=item.id;button.setAttribute('aria-controls',item.id);button.setAttribute('aria-pressed','false');controls.append(button);button.addEventListener('click',()=>navigate(`#catalogo/${category}/${item.id}`));return button});
   grid.before(controls,pickerContainer);
   const picker=createPicker(pickerContainer,{id:`choice-${category}`,label:({clientes:'Tipo de cliente',versiones:'Versión',complementos:'Área',servicios:'Servicio'})[category],options,onChange:id=>navigate(`#catalogo/${category}/${id}`)});
   choiceGroups[category]={items,buttons,picker};

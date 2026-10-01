@@ -15,6 +15,15 @@
     const options=document.createElement('div');options.className='catalog-options';const title=document.createElement('p');title.className='catalog-options-label';title.textContent=picker.querySelector('.picker-caption').textContent;options.append(title,choices,picker);
     const detail=document.createElement('div');detail.className='catalog-detail';detail.append(body);container.classList.add('catalog-choice-layout');container.append(options,detail);
   });
+  // Decorate fixed controls once; rendering and route handlers remain unchanged.
+  document.querySelectorAll('.catalog-tools>a,[data-sector],[data-compare-kind]').forEach(control=>{
+    const key=control.dataset.sector||control.dataset.compareKind||control.hash.split('/')[1];
+    const icon=document.createElement('span');icon.className='control-symbol';icon.setAttribute('aria-hidden','true');icon.innerHTML=pickerIcon(key==='licencias'?'licenciamiento':key);
+    const count=control.querySelector('[data-cart-count]');if(count)count.remove();
+    control.querySelectorAll('[aria-hidden=true]').forEach(node=>node.remove());
+    const label=document.createElement('span');label.className='control-label';label.textContent=control.textContent.trim();
+    control.replaceChildren(icon,label);if(count)control.append(count);
+  });
   // Every offer keeps its original content and ID. Group its actions consistently.
   function groupActions(container){
     const actions=[...container.children].filter(element=>element.matches('a.text-link,button.selection-action'));

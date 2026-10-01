@@ -22,10 +22,26 @@ function pickerIcon(key){
     'mi-solucion':'<rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V2h6v2m-6 7 2 2 4-4M9 17h6"/>',
     buscar:'<circle cx="10" cy="10" r="6"/><path d="m15 15 5 5"/>',
     recorrido:'<rect x="3" y="4" width="18" height="16" rx="3"/><path d="m10 8 6 4-6 4V8Z"/>',
+    'version-estandar':'<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>',
+    'version-proyectos':'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4m10-4v4M3 10h18m-13 5 3 3 5-5"/>',
+    'version-unidades':'<rect x="8" y="3" width="8" height="5" rx="1"/><path d="M12 8v5M5 16v-3h14v3"/><rect x="2" y="16" width="6" height="5" rx="1"/><rect x="16" y="16" width="6" height="5" rx="1"/>',
+    'version-corporativa':'<path d="M3 21V7l8-4v18m0-11h10v11M2 21h20M6 9v1m0 3v1m0 3v1m9-5v1m3-1v1m-3 3v1m3-1v1"/>',
+    'version-pos':'<path d="M6 3h9l4 4v14H6V3Zm9 0v5h4M9 12h7m-7 4h5"/>',
+    'version-produccion':'<path d="M3 21V11l6 3V9l6 4V3h5v18H3Zm4-4h1m3 0h1m4 0h1"/>',
+    'version-credito':'<path d="M3 5h18v14H3V5Zm0 4h18M7 14h3m6-1v3m-1-1h2"/>',
+    'servicio-implementacion':'<path d="m4 13 4 4L20 5M4 5h5m6 14h5"/>',
+    'servicio-capacitacion':'<path d="m2 8 10-5 10 5-10 5L2 8Zm4 3v6c4 3 8 3 12 0v-6m4-3v8"/>',
+    'servicio-consultoria':'<circle cx="12" cy="12" r="9"/><path d="m16 8-3 5-5 3 3-5 5-3Z"/>',
+    'servicio-soporte':'<path d="M4 13v-2a8 8 0 0 1 16 0v2m-1 6v1H13"/><rect x="2" y="11" width="4" height="7" rx="2"/><rect x="18" y="11" width="4" height="7" rx="2"/>',
+    Comercio:'<path d="M3 10h18l-2-7H5l-2 7Zm2 0v11h14V10M9 21v-7h6v7"/>',
+    Construcción:'<path d="M4 21V8l8-5 8 5v13M8 21v-7h8v7M8 9h1m6 0h1"/>',
+    Contabilidad:'<rect x="5" y="2" width="14" height="20" rx="2"/><path d="M8 6h8M8 11h1m6 0h1m-8 4h1m6 0h1m-8 4h1m6 0h1"/>',
+    Agro:'<path d="M5 19C3 9 9 3 21 3c0 12-6 18-16 16Zm0 0L17 7M3 21l2-2"/>',
+    Producción:'<path d="M3 21V11l6 3V9l6 4V3h5v18H3Zm4-4h1m3 0h1m4 0h1"/>',
     plan:'<path d="M8 6h13M8 12h13M8 18h13M3 6h1m-1 6h1m-1 6h1"/>'
   };
   const group=key==='servicio-apps'?'apps':key.startsWith('version-')?'versiones':key.startsWith('servicio-')?'servicios':key.startsWith('cliente-')?'clientes':key.startsWith('complemento-')?'complementos':key;
-  const path=paths[group]||'<rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/>';
+  const path=paths[key]||paths[group]||'<rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/>';
   return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false">${path}</svg>`;
 }
 function createPicker(container,{id,label,options,onChange}){
