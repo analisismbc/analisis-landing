@@ -12,4 +12,4 @@ La selección, las respuestas del asesor y los preparativos se guardan bajo `ana
 
 El resumen PDF se genera en el navegador e incluye la selección y la lista de preparación. WhatsApp y correo abren las aplicaciones con un mensaje preparado y requieren que la persona confirme el envío. Ninguna de estas funciones requiere un servidor.
 
-El recorrido visual muestra capacidades en una interfaz ilustrativa, claramente identificada; no utiliza capturas del software real. El apartado de aplicaciones React Native representa una opción de desarrollo independiente de Análisis MBC y no se añade a sus selecciones comerciales.
+El recorrido visual muestra capacidades en una interfaz ilustrativa, claramente identificada; no utiliza capturas del software real. El desarrollo de aplicaciones móviles con React Native es un servicio de Análisis MBC y está disponible en la búsqueda, la selección comercial y las consultas de contacto.

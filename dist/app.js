@@ -10,12 +10,12 @@ document.getElementById('contact-form').addEventListener('submit',e=>{
   const email=String(d.get('correo')||'').trim();
   const message=String(d.get('mensaje')||'').trim();
   if(!name||!message){document.getElementById('form-status').textContent='Complete su nombre y el mensaje de consulta.';return;}
-  const body=['Hola, quisiera información sobre enlace soft®.','',
+  const body=['Hola, quisiera información sobre las soluciones y servicios de Análisis MBC.','',
     'Nombre: '+name,company?'Empresa: '+company:'',email?'Correo: '+email:'','',message
   ].filter((line,i)=>line||i===1).join('\n');
   const destination=channel==='whatsapp'
     ?'https://wa.me/50686950367?text='+encodeURIComponent(body)
-    :'mailto:contacto@analisis.cr?subject='+encodeURIComponent('Consulta enlace soft®'+(company?' — '+company:''))+'&body='+encodeURIComponent(body);
+    :'mailto:contacto@analisis.cr?subject='+encodeURIComponent('Consulta Análisis MBC'+(company?' — '+company:''))+'&body='+encodeURIComponent(body);
   const link=document.createElement('a');link.href=destination;
   if(channel==='whatsapp'){link.target='_blank';link.rel='noopener noreferrer';}
   document.body.append(link);link.click();link.remove();
