@@ -53,9 +53,9 @@
   function notify(message){status.textContent=message;}
   function save(){try{localStorage.setItem('analisis-tools-v1',JSON.stringify(state));canSave=true;}catch{canSave=false;}return canSave;}
   const chosen=()=>allowedIDs(preview||state.cart).map(id=>catalog.get(id));
-  const addButton=item=>`<button type="button" class="tool-button selection-action" data-add="${item.id}" aria-pressed="${state.cart.includes(item.id)}">${state.cart.includes(item.id)?'✓ En mi solución':'+ Agregar a mi solución'}</button>`;
+  const addButton=item=>`<button type="button" class="tool-button selection-action" data-add="${item.id}" aria-pressed="${state.cart.includes(item.id)}">${state.cart.includes(item.id)?'En mi solución':'Agregar a mi solución'}</button>`;
   function refreshActions(){
-    $$('[data-add]').forEach(button=>{const on=state.cart.includes(button.dataset.add);button.setAttribute('aria-pressed',String(on));button.textContent=on?'✓ En mi solución':'+ Agregar a mi solución';});
+    $$('[data-add]').forEach(button=>{const on=state.cart.includes(button.dataset.add);button.setAttribute('aria-pressed',String(on));button.textContent=on?'En mi solución':'Agregar a mi solución';});
     $$('[data-cart-count]').forEach(el=>{el.textContent=state.cart.length;el.setAttribute('aria-label',`${state.cart.length} opciones seleccionadas`);});
   }
   function addItems(ids){

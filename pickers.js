@@ -2,14 +2,42 @@
 // and changing an option never scrolls the page to a different control.
 const customPickers = new Set();
 function closePickers(){customPickers.forEach(picker=>picker.close());}
+function pickerIcon(key){
+  const paths={
+    finanzas:'<path d="M4 20h16M6 20V9h12v11M4 9l8-5 8 5M9 12v5m6-5v5"/>',
+    inventarios:'<path d="m3 7 9-4 9 4v10l-9 4-9-4V7Zm0 0 9 4 9-4M12 11v10"/>',
+    personas:'<circle cx="9" cy="8" r="3"/><path d="M3 20v-2a6 6 0 0 1 12 0v2M16 5a3 3 0 0 1 0 6m2 3a5 5 0 0 1 3 4v2"/>',
+    activos:'<rect x="3" y="6" width="18" height="14" rx="2"/><path d="M8 6V4h8v2M3 12h18m-11 0v3h4v-3"/>',
+    clientes:'<circle cx="12" cy="8" r="3"/><path d="M5 20v-2a7 7 0 0 1 14 0v2"/>',
+    versiones:'<path d="m3 7 9-4 9 4-9 4-9-4Zm0 5 9 4 9-4M3 17l9 4 9-4"/>',
+    licenciamiento:'<path d="m12 3 8 4v5c0 5-8 9-8 9s-8-4-8-9V7l8-4Z"/><path d="m8 12 3 3 5-6"/>',
+    sectores:'<path d="M4 21V7l8-4v18M12 9h8v12M3 21h18M7 8v1m0 3v1m0 3v1m9-5v1m0 3v1"/>',
+    complementos:'<path d="M8 3v5m8-5v5M6 8h12v3a6 6 0 0 1-6 6v4m-6-9h12"/>',
+    servicios:'<path d="m14 7 3 3 4-4a6 6 0 0 1-8 8l-6 6a2 2 0 0 1-3-3l6-6a6 6 0 0 1 8-8l-4 4Z"/>',
+    apps:'<rect x="6" y="2" width="12" height="20" rx="3"/><path d="M10 5h4m-3 14h2"/>',
+    asesor:'<circle cx="12" cy="12" r="9"/><path d="m16 8-3 5-5 3 3-5 5-3Z"/>',
+    comparar:'<path d="M4 7h16M4 17h16"/><circle cx="8" cy="7" r="3"/><circle cx="16" cy="17" r="3"/>',
+    'mi-solucion':'<rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V2h6v2m-6 7 2 2 4-4M9 17h6"/>',
+    buscar:'<circle cx="10" cy="10" r="6"/><path d="m15 15 5 5"/>',
+    recorrido:'<rect x="3" y="4" width="18" height="16" rx="3"/><path d="m10 8 6 4-6 4V8Z"/>',
+    plan:'<path d="M8 6h13M8 12h13M8 18h13M3 6h1m-1 6h1m-1 6h1"/>'
+  };
+  const group=key.startsWith('version-')?'versiones':key.startsWith('servicio-')?'servicios':key.startsWith('cliente-')?'clientes':key.startsWith('complemento-')?'complementos':key;
+  const path=paths[group]||'<rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/>';
+  return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false">${path}</svg>`;
+}
 function createPicker(container,{id,label,options,onChange}){
   customPickers.forEach(picker=>{if(picker.trigger.id===id){picker.close();picker.list.remove();customPickers.delete(picker);}});
   const caption=document.createElement('span');caption.id=`${id}-label`;caption.className='picker-caption';caption.textContent=label;
   const trigger=document.createElement('button');trigger.type='button';trigger.id=id;trigger.className='picker-trigger';trigger.setAttribute('role','combobox');trigger.setAttribute('aria-haspopup','listbox');trigger.setAttribute('aria-expanded','false');trigger.setAttribute('aria-controls',`${id}-list`);trigger.setAttribute('aria-labelledby',`${caption.id} ${id}-value`);trigger.setAttribute('aria-autocomplete','none');
   const value=document.createElement('span');value.id=`${id}-value`;value.className='picker-value';
+  const symbol=document.createElement('span');symbol.className='picker-symbol';symbol.setAttribute('aria-hidden','true');
+  const copy=document.createElement('span');copy.className='picker-copy';
+  const hint=document.createElement('span');hint.className='picker-hint';hint.setAttribute('aria-hidden','true');hint.textContent=`${options.length} opciones disponibles`;
   const arrow=document.createElement('span');arrow.className='picker-arrow';arrow.setAttribute('aria-hidden','true');
-  trigger.append(value,arrow);container.append(caption,trigger);
+  copy.append(value,hint);trigger.append(symbol,copy,arrow);container.append(caption,trigger);
   const list=document.createElement('div');list.id=`${id}-list`;list.className='picker-list';list.setAttribute('role','listbox');list.setAttribute('aria-labelledby',caption.id);list.hidden=true;
+  list.dataset.caption=`${label} · ${options.length} opciones`;
   let selected=0,active=0,search='',searchTime=0;
   const rows=options.map((option,index)=>{
     const row=document.createElement('div');row.id=`${id}-option-${index}`;row.className='picker-option';row.setAttribute('role','option');row.setAttribute('aria-selected','false');row.dataset.value=option.value;
@@ -31,7 +59,7 @@ function createPicker(container,{id,label,options,onChange}){
   function open(){closePickers();list.hidden=false;trigger.setAttribute('aria-expanded','true');position();highlight(selected);}
   function close(){list.hidden=true;trigger.setAttribute('aria-expanded','false');trigger.removeAttribute('aria-activedescendant');search='';}
   function reposition(){if(list.hidden)return;const rect=trigger.getBoundingClientRect();if(!trigger.isConnected||!rect.width||rect.bottom<=0||rect.top>=innerHeight){close();return;}position();}
-  function setValue(key){const index=options.findIndex(option=>option.value===key);if(index<0)return;selected=index;value.textContent=options[index].label;rows.forEach((row,i)=>row.setAttribute('aria-selected',String(i===index)));}
+  function setValue(key){const index=options.findIndex(option=>option.value===key);if(index<0)return;selected=index;value.textContent=options[index].label;symbol.innerHTML=pickerIcon(options[index].value);rows.forEach((row,i)=>row.setAttribute('aria-selected',String(i===index)));}
   function choose(index){setValue(options[index].value);close();trigger.focus({preventScroll:true});onChange(options[index].value);}
   trigger.addEventListener('click',()=>list.hidden?open():close());
   trigger.addEventListener('keydown',event=>{
