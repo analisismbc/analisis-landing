@@ -3,6 +3,7 @@
 const customPickers = new Set();
 function closePickers(){customPickers.forEach(picker=>picker.close());}
 function createPicker(container,{id,label,options,onChange}){
+  customPickers.forEach(picker=>{if(picker.trigger.id===id){picker.close();picker.list.remove();customPickers.delete(picker);}});
   const caption=document.createElement('span');caption.id=`${id}-label`;caption.className='picker-caption';caption.textContent=label;
   const trigger=document.createElement('button');trigger.type='button';trigger.id=id;trigger.className='picker-trigger';trigger.setAttribute('role','combobox');trigger.setAttribute('aria-haspopup','listbox');trigger.setAttribute('aria-expanded','false');trigger.setAttribute('aria-controls',`${id}-list`);trigger.setAttribute('aria-labelledby',`${caption.id} ${id}-value`);trigger.setAttribute('aria-autocomplete','none');
   const value=document.createElement('span');value.id=`${id}-value`;value.className='picker-value';
@@ -29,6 +30,7 @@ function createPicker(container,{id,label,options,onChange}){
   function highlight(index){active=index;rows.forEach((row,i)=>row.classList.toggle('is-active',i===active));trigger.setAttribute('aria-activedescendant',rows[active].id);const row=rows[active];if(row.offsetTop<list.scrollTop)list.scrollTop=row.offsetTop;else if(row.offsetTop+row.offsetHeight>list.scrollTop+list.clientHeight)list.scrollTop=row.offsetTop+row.offsetHeight-list.clientHeight;}
   function open(){closePickers();list.hidden=false;trigger.setAttribute('aria-expanded','true');position();highlight(selected);}
   function close(){list.hidden=true;trigger.setAttribute('aria-expanded','false');trigger.removeAttribute('aria-activedescendant');search='';}
+  function reposition(){if(list.hidden)return;const rect=trigger.getBoundingClientRect();if(!trigger.isConnected||!rect.width||rect.bottom<=0||rect.top>=innerHeight){close();return;}position();}
   function setValue(key){const index=options.findIndex(option=>option.value===key);if(index<0)return;selected=index;value.textContent=options[index].label;rows.forEach((row,i)=>row.setAttribute('aria-selected',String(i===index)));}
   function choose(index){setValue(options[index].value);close();trigger.focus({preventScroll:true});onChange(options[index].value);}
   trigger.addEventListener('click',()=>list.hidden?open():close());
@@ -49,8 +51,9 @@ function createPicker(container,{id,label,options,onChange}){
   });
   trigger.addEventListener('blur',()=>close());
   list.addEventListener('pointerdown',event=>event.preventDefault());
-  const picker={close,setValue,trigger,list};customPickers.add(picker);setValue(options[0].value);return picker;
+  const picker={close,setValue,trigger,list,reposition};customPickers.add(picker);setValue(options[0].value);return picker;
 }
 document.addEventListener('pointerdown',event=>{customPickers.forEach(picker=>{if(!picker.trigger.contains(event.target)&&!picker.list.contains(event.target))picker.close();});});
-window.addEventListener('resize',closePickers);
-document.addEventListener('scroll',event=>{if(!event.target.closest?.('.picker-list'))closePickers();},true);
+window.addEventListener('resize',()=>customPickers.forEach(picker=>picker.reposition()));
+window.visualViewport?.addEventListener('resize',()=>customPickers.forEach(picker=>picker.reposition()));
+document.addEventListener('scroll',event=>{if(!event.target.closest?.('.picker-list'))customPickers.forEach(picker=>picker.reposition());},true);

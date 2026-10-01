@@ -34,6 +34,7 @@ addChoices('servicios','.service-grid');
 function selectChoice(category,id){const group=choiceGroups[category];if(!group)return;const chosen=group.items.find(item=>item.id===id)||group.items.find(item=>item.id===remembered.choices[category])||group.items[0];remembered.choices[category]=chosen.id;group.items.forEach(item=>{item.hidden=item!==chosen});group.buttons.forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.choice===chosen.id)));group.picker.setValue(chosen.id);}
 function resolveRoute(hash){
   const parts=hash.replace(/^#/,'').split('/');const key=parts[0];
+  if(key==='herramientas')return{view:'herramientas',tool:parts[1]?.split('?')[0]||'asesor'};
   if(['inicio','nosotros','contacto'].includes(key))return{view:key};
   if(key==='contenido')return{view:currentView||'inicio',category:remembered.category};
   if(key==='catalogo')return{view:'catalogo',category:panels.some(p=>p.dataset.category===parts[1])?parts[1]:remembered.category,choice:parts[2]};
@@ -52,9 +53,13 @@ function showRoute(hash,focus=false){
     selectChoice(route.category,route.choice);
     if(route.category==='soluciones'&&modules[route.choice])selectModule(document.querySelector(`[data-module="${route.choice}"]`));
   }
-  primaryNav.querySelectorAll('a').forEach(a=>{const selected=a.hash===`#${route.view}`;a.classList.toggle('current',selected);if(selected)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
+  primaryNav.querySelectorAll('a').forEach(a=>{const selected=a.getAttribute('href')===`#${route.view}`;a.classList.toggle('current',selected);if(selected)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
   closeNavigation();
-  document.title=`${{inicio:'Análisis MBC · Software empresarial',catalogo:'Soluciones y servicios · Análisis MBC',nosotros:'Nuestra empresa · Análisis MBC',contacto:'Contacto · Análisis MBC'}[route.view]}`;
+  document.title=`${{inicio:'Análisis MBC · Software empresarial',catalogo:'Soluciones y servicios · Análisis MBC',herramientas:'Encuentre su solución · Análisis MBC',nosotros:'Nuestra empresa · Análisis MBC',contacto:'Contacto · Análisis MBC'}[route.view]}`;
+  if(route.view==='herramientas')window.SiteTools?.show(route.tool);
+  if(route.view==='catalogo'&&route.category==='complementos'){
+    const detail=hash.split('/')[3];if(detail){const item=document.getElementById(detail);if(item?.tagName==='DETAILS'&&item.closest('[data-category="complementos"]'))item.open=true;}
+  }
   // Changing a category replaces its content in place. Only changing the screen resets reading position, without animation.
   if(changedView||focus)window.scrollTo({top:0,left:0,behavior:'instant'});
   if(focus)document.getElementById('contenido').focus({preventScroll:true});
