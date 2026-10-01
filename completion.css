@@ -124,3 +124,29 @@ html[data-motion=static] body *,html[data-motion=static] body *::before,html[dat
 
 .contact #contact-form .form-actions>.whatsapp-action{background:#176c4d;color:#fff}
 .contact #contact-form .form-actions>.email-action{background:var(--accent-soft);color:var(--accent-text)}
+/* Search shortcuts form a compact, illustrated control group. */
+.tools-view #tool-buscar{min-height:0}
+.search-suggestions-label{font-size:11px;font-weight:600;color:var(--muted);margin:20px 0 10px}
+.tools-view .popular-needs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;margin:0 0 18px;border:1px solid var(--line);border-radius:var(--radius-control);overflow:hidden;background:var(--surface)}
+.tools-view .popular-needs>button{display:flex;align-items:center;justify-content:flex-start;gap:10px;min-width:0;min-height:60px;width:100%;padding:12px;border:0;border-radius:0;background:transparent;color:var(--ink);text-align:left;white-space:normal;line-height:1.5;font-size:12px;font-weight:600;transition:background-color 140ms ease,color 140ms ease}
+.tools-view .popular-needs>button:nth-child(even){border-left:1px solid var(--line)}
+.tools-view .popular-needs>button:nth-child(n+3){border-top:1px solid var(--line)}
+.need-symbol{display:grid;place-items:center;flex-shrink:0;width:32px;height:32px;border-radius:var(--radius-sm);background:var(--accent-icon);color:var(--accent-text)}
+.need-symbol svg{width:19px;height:19px}
+.need-label{flex:1;min-width:0;overflow-wrap:normal}
+.popular-needs>button>svg{flex-shrink:0;width:14px;height:14px;color:var(--muted)}
+.popular-needs [data-need-tone="1"] .need-symbol{background:#138c8520;color:#16776f}
+.popular-needs [data-need-tone="2"] .need-symbol{background:#735cba20;color:#7055a8}
+.popular-needs [data-need-tone="3"] .need-symbol{background:#ba7b1620;color:#926219}
+html[data-theme=dark] .popular-needs [data-need-tone="1"] .need-symbol{color:#80d2c5}
+html[data-theme=dark] .popular-needs [data-need-tone="2"] .need-symbol{color:#c3a8ed}
+html[data-theme=dark] .popular-needs [data-need-tone="3"] .need-symbol{color:#e4bb75}
+.tools-view .popular-needs>button:is(:hover,[aria-pressed=true]){background:var(--accent-soft)}
+.tools-view .popular-needs>button[aria-pressed=true]{box-shadow:inset 0 -2px var(--accent-text)}
+.tools-view .popular-needs>button:focus-visible{outline-offset:-3px}
+.needs-input>.primary{display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.needs-input>.primary svg,#search-more svg{width:18px;height:18px;flex-shrink:0}
+.needs-input>button:disabled{opacity:.45;cursor:default}
+.tools-view #search-more{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:48px;margin-top:18px;border-color:var(--accent-border);background:var(--accent-soft);color:var(--accent-text)}
+.tools-view :is(#search-more,#search-filters)[hidden]{display:none!important}
+@media(max-width:380px){.tools-view .popular-needs>button{gap:7px;padding:10px 8px;font-size:11px}.need-symbol{width:28px;height:28px}.popular-needs>button>svg{width:11px;height:11px}}

@@ -148,6 +148,8 @@
   $('#search-filters').innerHTML=searchTypes.map(type=>`<button type="button" data-filter="${type}" aria-pressed="${type===searchFilter}">${type==='Todos'?'Todo':type==='Versión'?'Versiones':type==='Licenciamiento'?type:type+'s'}</button>`).join('');
   function renderSearch(){
     const query=normal($('#needs-query').value);const terms=query.split(' ').filter(Boolean);
+    $('[data-action="clear-search"]').disabled=!query;
+    $$('[data-search-term]').forEach(button=>button.setAttribute('aria-pressed',String(query===normal(button.dataset.searchTerm))));
     $('#search-filters').hidden=!query;
     if(!query){$('#search-count').textContent='';$('#search-results').innerHTML='';$('#search-more').hidden=true;return;}
     const results=[...catalog.values()].filter(item=>searchFilter==='Todos'||item.type===searchFilter).map(item=>({item,text:normal([item.label,item.desc,item.features.join(' '),item.keywords].join(' '))})).filter(({text})=>terms.every(term=>text.includes(term))).sort((a,b)=>Number(normal(b.item.label).includes(query))-Number(normal(a.item.label).includes(query)));
