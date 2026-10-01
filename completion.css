@@ -8,6 +8,14 @@
 .footer-identity>.social-links{margin-top:22px;border-color:#48617b;background:#ffffff05}
 .footer-identity>.social-links>a{color:#c9daf2;font-size:11px;border-color:#48617b}
 .footer-identity>.social-links>a:hover{background:#ffffff0d;color:#fff}
+/* Contact actions share a divided surface at every viewport, including desktop. */
+footer .footer-contact-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;align-items:stretch;margin-top:16px;padding:0;border:1px solid #48617b;border-radius:var(--radius-control);overflow:hidden;background:#ffffff08}
+footer .footer-contact-actions>:is(a,button){display:flex;align-items:center;justify-content:center;gap:8px;min-width:0;width:100%;min-height:52px;margin:0;padding:10px 12px;border:0;border-radius:0;background:transparent;box-shadow:none;font-size:11px;line-height:1.6;text-align:center;white-space:normal;color:#c9daf2}
+footer .footer-contact-actions>:nth-child(even){border-left:1px solid #48617b}
+footer .footer-contact-actions>:nth-child(n+3){border-top:1px solid #48617b}
+footer .footer-contact-actions>.footer-whatsapp{color:#a4d8bf}
+footer .footer-contact-actions>.footer-contact-link{display:flex!important;width:100%;margin:0;border-bottom:0}
+footer .footer-contact-actions>:focus-visible{outline-offset:-3px}
 .contact-social{margin-top:24px;max-width:380px}
 .contact .contact-social>h2{font-size:14px;line-height:1.5;letter-spacing:0;margin:0 0 12px}
 .founder-profile{display:flex;align-items:center;gap:16px;margin-top:22px;padding:14px;border:1px solid var(--line);border-radius:var(--radius-card);background:var(--surface-subtle)}
